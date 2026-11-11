@@ -538,8 +538,8 @@ function save() { try { localStorage.setItem(LS_KEY + suf(), JSON.stringify(S));
 /* ============ CUENTAS (opcional) ============
    Para activar registro e inicio de sesión, pega aquí los datos de tu proyecto de Supabase
    (ver README.md). Si los dejas vacíos, la app funciona sin cuentas, guardando todo en el dispositivo. */
-const SUPA_URL = "";   // ej: "https://xxxx.supabase.co"
-const SUPA_KEY = "";   // clave pública "anon" (es pública por diseño; la seguridad la dan las políticas RLS)
+const SUPA_URL = "sb_publishable_0z3I3gIajRG5Fi0rvold3g_XSW-Lw74";   // ej: "https://xxxx.supabase.co"
+const SUPA_KEY = "nxyxmrxwiwttbbydurde";   // clave pública "anon" (es pública por diseño; la seguridad la dan las políticas RLS)
 let AC = (() => { try { return JSON.parse(localStorage.getItem("ecb_sesion")); } catch (e) { return null; } })();
 const suf = () => AC ? "_" + AC.uid : "";
 let S = load();
