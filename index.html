@@ -89,7 +89,7 @@ h2{font:800 1.2rem "Arial Narrow","Roboto Condensed",sans-serif;color:var(--acce
   <main id="app"></main>
   <p class="note center" style="margin-top:24px">App de estudio no oficial, basada en el Libro del Nuevo Conductor (CONASET).</p>
 </div>
-
+ 
 <script>
 /* ================================================================
    BANCO DE PREGUNTAS  —  AQUÍ AGREGAS MÁS
@@ -147,12 +147,12 @@ const QUESTIONS = [
     why: "La Ley de Convivencia Vial exige al menos 1,5 m al adelantar a un ciclista. Si no se puede, no se adelanta." }
   // ← (formato largo, opcional) agrega preguntas arriba de esta línea
 ];
-
+ 
 /* CAPÍTULOS DEL LIBRO (índice edición 2026). El número de capítulo es el "ch" de cada pregunta. */
 const CH = ["Los siniestros de tránsito", "Los principios de la conducción", "Convivencia vial", "La persona en el tránsito",
   "Usuarios vulnerables", "Normas de circulación", "Circunstancias especiales", "Conducción eficiente", "Informaciones importantes"];
 const MAP = { 1: 6, 2: 6, 3: 6, 4: 4, 5: 4, 6: 4, 7: 6, 8: 6, 9: 5, 10: 3 }; // capítulo de las preguntas 1-10
-
+ 
 /* FORMATO CORTO PARA AGREGAR MUCHAS: [capítulo 1-9, pregunta, CORRECTA, falsa1, falsa2, falsa3, justificación]
    Las ids se asignan solas (11, 12, 13...). Agrega siempre AL FINAL para no cambiar las ids anteriores. */
 const NEW = [
@@ -517,7 +517,7 @@ NEW.forEach((t, i) => QUESTIONS.push({ id: 11 + i, ch: t[0], cat: CH[t[0] - 1], 
 const FLASH = [[1, "Siniestro", "Suceso de tránsito con causas en su mayoría prevenibles; reemplaza la idea de \"accidente por azar\"."], [1, "Factores concurrentes", "Humano, vehículo y vía/entorno: suelen combinarse en un siniestro."], [1, "Costo económico", "Cerca del 2% del PIB, según la OMS."], [1, "Retención infantil", "Obligatoria hasta los 8 años inclusive, según talla y peso."], [1, "Alcohol (0,3 g/L)", "Desde este nivel ya hay sanción por conducir bajo la influencia del alcohol."], [2, "Distancia de detención", "Distancia de reacción + distancia de frenado."], [2, "Velocidad ×2", "La distancia de frenado se multiplica aproximadamente por 4."], [2, "Inercia", "Tendencia de un cuerpo a seguir en movimiento; explica por qué se necesita el cinturón."], [2, "Punto ciego", "Zona que no ves en los espejos; se revisa girando la cabeza."], [2, "ABS", "Evita que las ruedas se bloqueen: pisa firme y sostenido."], [3, "Convivencia vial", "Compartir la vía respetando el espacio y la prioridad de todos los usuarios."], [3, "1,5 m", "Separación lateral mínima al adelantar a un ciclista."], [3, "Punto ciego", "Zona que los espejos no muestran; revísala antes de cambiar de pista."], [3, "Preferencia peatonal", "En el paso peatonal, el conductor debe detenerse y ceder el paso."], [3, "Bocina", "Solo para evitar un siniestro o advertir un peligro."], [4, "0,3 g/L", "Desde este nivel hay sanción por conducir bajo la influencia del alcohol."], [4, "0,8 g/L", "Desde este nivel se considera estado de ebriedad."], [4, "Ley Emilia", "Endurece las penas por causar muerte o lesiones graves manejando bajo la influencia del alcohol: cárcel efectiva y cancelación de licencia."], [4, "Fatiga", "Aumenta el tiempo de reacción; la solución es parar y descansar."], [4, "Distracción", "Todo lo que aparta la atención de la vía: celular en mano, comer, manipular la radio."], [5, "Usuarios vulnerables", "Peatones, ciclistas y motociclistas: sin carrocería que los proteja."], [5, "Retención infantil", "Obligatoria hasta los 8 años inclusive, según talla y peso, en el asiento trasero."], [5, "Asiento delantero", "Menores de 12 años no deben ir allí (excepto cabina simple)."], [5, "1,5 m", "Separación mínima al adelantar a un ciclista."], [5, "Paso peatonal", "El conductor se detiene y cede el paso; no se estaciona sobre él."], [6, "50 / 100 / 120", "Urbano 50; rural con una pista por sentido 100; rural con 2 o más pistas por sentido y autopista 120 (si no hay señal que indique otro)."], [6, "PARE (octágono)", "Detención total antes de continuar."], [6, "Ceda el paso (triángulo invertido)", "Reducir y dar prioridad a la vía preferente."], [6, "Preferencia en cruce sin señal", "Quien llega por la derecha."], [6, "Rotonda", "Tiene preferencia quien ya circula dentro."], [7, "Hidroplaneo", "Los neumáticos flotan sobre el agua: suelta el acelerador, volante firme, sin frenar a fondo."], [7, "PAS", "Proteger, Avisar, Socorrer."], [7, "Emergencias", "133 Carabineros, 131 ambulancia, 132 Bomberos."], [7, "Niebla", "Luces bajas (y antiniebla); nunca luces altas."], [7, "Avería en calzada", "Balizas y triángulos detrás del vehículo."], [8, "Conducción eficiente", "Conducir de forma suave y anticipada para ahorrar combustible, reducir emisiones y mejorar la seguridad."], [8, "Ralentí", "Motor encendido sin avanzar; si es prolongado, conviene apagarlo."], [8, "Presión de neumáticos", "La recomendada mejora seguridad y reduce el consumo."], [8, "Frenado regenerativo", "En eléctricos, recupera parte de la energía al frenar."], [8, "Resistencia al aire", "Aumenta con ventanas abiertas y portaequipaje en el techo."], [9, "Examen teórico", "35 preguntas, 3 de doble puntaje; se aprueba con 33 de 38 puntos en 45 minutos."], [9, "Edad mínima clase B", "18 años."], [9, "SOAP", "Seguro obligatorio por lesiones a ocupantes y terceros en siniestros."], [9, "Revisión técnica", "Control de seguridad y emisiones del vehículo."], [9, "Permiso de circulación", "Se renueva todos los años."]];
 const CASES = [[1, "Vas por una ruta lluviosa a 100 km/h y el auto de adelante frena de golpe.", "reducir velocidad desde antes y aumentar la distancia. El pavimento mojado alarga el frenado."], [1, "Ves un choque, hay heridos y salen humo y combustible.", "señalizar, llamar a 131/132/133 y mover a los heridos solo si hay peligro inminente (incendio). No irte."], [2, "Vas por una curva cerrada con lluvia y sientes que vas rápido.", "reducir la velocidad antes de la curva, sin frenar bruscamente dentro de ella."], [2, "Un auto frena fuerte frente a ti y estás muy cerca.", "frenar firme y sostenido (con ABS no bombees). La causa fue la poca distancia de seguimiento."], [3, "Vas detrás de un ciclista en una calle angosta con tránsito contrario.", "esperar, no pasar rozando y adelantar solo con 1,5 m de separación cuando sea seguro."], [3, "Estás estacionado y vas a bajar. Sientes que no viene nadie.", "mirar por el espejo y por el costado antes de abrir la puerta, por si viene un ciclista o moto."], [4, "Saliste de un cumpleaños, tomaste dos copas y \"te sientes bien\".", "no manejar. La sensación de estar bien es engañosa y solo el tiempo elimina el alcohol; busca un conductor designado o transporte."], [4, "Llevas 4 horas conduciendo de noche y empiezas a cabecear.", "detenerte en un lugar seguro y descansar. Subir la música o abrir la ventana no resuelven el cansancio."], [5, "Llevas a tu sobrino de 7 años. Dice que quiere ir adelante.", "va atrás con su sistema de retención, porque tiene menos de 8 años y menos de 12."], [5, "Vas de noche y hay un ciclista con poca luz al borde de la calzada.", "reducir la velocidad, adelantar con 1,5 m solo si es seguro y estar atento."], [6, "Llegas a un cruce sin señales y viene un auto por tu derecha.", "cederle el paso."], [6, "En autopista el tramo indica 100 km/h, aunque el límite general es 120.", "obedecer la señal del tramo."], [7, "Vas por carretera, entra neblina y casi no ves el auto de adelante.", "reducir la velocidad, usar luces bajas y buscar un lugar seguro para detenerte fuera de la calzada."], [7, "Presencias un choque con un herido atrapado y sin riesgo de incendio.", "proteger el lugar, llamar a emergencia y no moverlo, esperando ayuda."], [8, "Tu auto consume más de lo normal y llevas un portaequipaje vacío en el techo.", "retirarlo y revisar la presión de neumáticos."], [8, "Ves un semáforo en rojo a 200 m.", "soltar el acelerador y dejar rodar, frenando suavemente al llegar."], [9, "Te detiene Carabineros y no encuentras tu SOAP.", "cooperar, explicar con calma y regularizar. Circular sin SOAP es una infracción."], [9, "Perdiste tu licencia y debes manejar al trabajo mañana.", "tramitar el duplicado antes de conducir. No manejes sin licencia."]];
 const TF = [[1, "Los siniestros son mala suerte.", false, "La mayoría es evitable."], [1, "El factor humano influye en la mayoría.", true, ""], [1, "Con buen auto no hace falta cinturón.", false, "El cinturón reduce el riesgo de lesión grave o muerte."], [1, "Un solo factor causa siempre el siniestro.", false, "Suelen combinarse varios."], [1, "Los siniestros tienen costo solo humano.", false, "También económico y social (cerca del 2% del PIB)."], [2, "Si voy al doble de velocidad, freno al doble de distancia.", false, "Aproximadamente 4 veces."], [2, "Con ABS debo bombear el freno.", false, "Pisa firme y sostenido."], [2, "Los neumáticos son el único contacto con el suelo.", true, ""], [2, "Ajustar los espejos en marcha es aceptable.", false, "Se hace antes de partir."], [2, "Con cansancio aumenta la distancia de reacción.", true, ""], [3, "Los autos tienen prioridad por ser más grandes.", false, ""], [3, "Debo dejar 1,5 m al adelantar a un ciclista.", true, ""], [3, "Puedo usar la bocina para apurar a quien va adelante.", false, ""], [3, "Debo ceder el paso a vehículos de emergencia con sirena.", true, ""], [3, "Responder una agresión en la calle ayuda.", false, "Mantén la calma."], [4, "El café quita la borrachera.", false, "Solo el tiempo."], [4, "Desde 0,3 g/L ya hay sanción.", true, ""], [4, "El manos libres es igual a usar el celular en la mano.", false, "en cuanto a la ley, aunque igual distrae; lo más seguro es no usar el celular."], [4, "Un medicamento puede causar somnolencia y afectar la conducción.", true, ""], [4, "Un conductor con experiencia no tiene riesgo de distraerse.", false, ""], [5, "Un niño puede ir en brazos si el viaje es corto.", false, ""], [5, "Los menores de 12 años van atrás.", true, "(con excepción en cabina simple)."], [5, "El casco es opcional para el motociclista.", false, ""], [5, "Debo ceder el paso al peatón que cruza por el paso peatonal.", true, ""], [5, "Puedo estacionar un momento en la ciclovía.", false, ""], [6, "El límite urbano general es 60 km/h.", false, "Es 50 km/h."], [6, "En un cruce sin señal pasa primero quien viene por la derecha.", true, ""], [6, "El amarillo fijo significa acelerar.", false, ""], [6, "Puedo adelantar en una curva si no veo a nadie.", false, ""], [6, "Puedo bocinar para apurar a otros.", false, ""], [7, "En niebla uso luces altas para ver mejor.", false, ""], [7, "Ante hidroplaneo, freno a fondo.", false, ""], [7, "PAS significa Proteger, Avisar, Socorrer.", true, ""], [7, "Los triángulos van delante del vehículo averiado.", false, "Detrás."], [7, "Huir del lugar de un siniestro es solo una falta menor.", false, ""], [8, "Acelerar fuerte ahorra tiempo y combustible.", false, ""], [8, "Un motor mantenido consume menos.", true, ""], [8, "Los eléctricos no requieren atención con peatones.", false, ""], [8, "El ralentí prolongado es eficiente.", false, ""], [8, "La presión baja en neumáticos aumenta el consumo.", true, ""], [9, "El teórico se aprueba con 20 puntos.", false, "Son 33 de 38."], [9, "Se puede obtener clase B a los 16 años.", false, "Desde los 18."], [9, "El SOAP cubre solo daños al auto.", false, ""], [9, "El permiso de circulación se renueva anualmente.", true, ""], [9, "En el examen se pueden usar apuntes.", false, ""]];
-
+ 
 /* ================================================================
    CONFIGURACIÓN DEL MOTOR (puedes ajustarla)
    ================================================================ */
@@ -526,7 +526,7 @@ const LS_KEY = "examenClaseB_v1";
 const ROUND = 10;                 // preguntas por ronda (se guarda un puntaje al terminar)
 const GAPS = [3, 6, 12, 25, 50];  // en cuántas respuestas vuelve a salir cada "caja" (0 = falló)
 const MASTERED = 3;               // caja desde la cual la pregunta cuenta como dominada
-
+ 
 /* ================================================================
    ESTADO + localStorage
    ================================================================ */
@@ -538,8 +538,12 @@ function save() { try { localStorage.setItem(LS_KEY + suf(), JSON.stringify(S));
 /* ============ CUENTAS (opcional) ============
    Para activar registro e inicio de sesión, pega aquí los datos de tu proyecto de Supabase
    (ver README.md). Si los dejas vacíos, la app funciona sin cuentas, guardando todo en el dispositivo. */
-const SUPA_URL = "https://nxyxmrxwiwttbbydurde.supabase.co";   // ej: "https://xxxx.supabase.co"
-const SUPA_KEY = "nxyxmrxwiwttbbydurde";   // clave pública "anon" (es pública por diseño; la seguridad la dan las políticas RLS)
+let SUPA_URL = "https://nxyxmrxwiwttbbydurde.supabase.co";   // ej: "https://xxxx.supabase.co"
+let SUPA_KEY = "sb_publishable_0z3I3gIajRG5Fi0rvold3g_XSW-Lw74";   // clave pública "anon" (es pública por diseño; la seguridad la dan las políticas RLS)
+/* Limpia errores comunes al pegar: texto "NEXT_PUBLIC_...=", falta de https://, barra final o /rest/v1 */
+SUPA_URL = SUPA_URL.trim().replace(/^[A-Z_]+=/, "").replace(/^.*?(https?:\/\/)/, "$1").replace(/\/(rest|auth)\/v1.*$/, "").replace(/\/+$/, "");
+if (SUPA_URL && !/^https?:\/\//.test(SUPA_URL)) SUPA_URL = "https://" + SUPA_URL;
+SUPA_KEY = SUPA_KEY.trim().replace(/^[A-Z_]+=/, "").replace(/^["']|["']$/g, "");
 let AC = (() => { try { return JSON.parse(localStorage.getItem("ecb_sesion")); } catch (e) { return null; } })();
 const suf = () => AC ? "_" + AC.uid : "";
 let S = load();
@@ -547,7 +551,7 @@ const $ = s => document.querySelector(s);
 const app = $("#app");
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const card = id => S.cards[id] || (S.cards[id] = { box: 0, due: 0, seen: 0, ok: 0, fail: 0 });
-
+ 
 function progress() {
   const m = QUESTIONS.filter(q => S.cards[q.id] && S.cards[q.id].box >= MASTERED).length;
   return Math.round(m / QUESTIONS.length * 100);
@@ -557,7 +561,7 @@ function totals() {
   Object.values(S.cards).forEach(c => { seen += c.seen; ok += c.ok; });
   return { seen, ok, acc: seen ? Math.round(ok / seen * 100) : 0 };
 }
-
+ 
 /* ================================================================
    MOTOR: Active Recall + Repetición Espaciada (cajas tipo Leitner)
    - Fallas  -> caja 0 -> vuelve en ~3 respuestas
@@ -585,7 +589,7 @@ function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
   return a;
 }
-
+ 
 /* ================================================================
    VISTAS
    ================================================================ */
@@ -716,7 +720,7 @@ function stats() {
     }
   };
 }
-
+ 
 /* ---------- Progreso por capítulo ---------- */
 function chRows() {
   const st = CH.map((n, i) => {
@@ -731,7 +735,7 @@ function chRows() {
     <div class="mini"><i style="width:${x.t ? Math.round(x.m / x.t * 100) : 0}%"></i></div>
     ${x.e === w && w > 0 ? '<b style="color:var(--bad)">Peor</b>' : ""}</div>`).join("");
 }
-
+ 
 /* ---------- Test de diagnóstico: 3 preguntas por capítulo, sin pistas hasta el final ---------- */
 let D = null;
 function diagStart() {
@@ -769,8 +773,8 @@ function diagEnd() {
     `<button class="btn" id="sm2">Empezar aprendizaje inteligente</button><button class="btn alt" id="go">Estudiar el capítulo más débil</button><button class="btn alt" id="hm">Volver al inicio</button>`;
   $("#sm2").onclick = smartStart; $("#go").onclick = quiz; $("#hm").onclick = home;
 }
-
-
+ 
+ 
 /* ---------- Otros métodos de estudio: tarjetas, casos y verdadero/falso ---------- */
 let M = null;
 function study(k) {
@@ -805,8 +809,8 @@ function studyView() {
     });
   }
 }
-
-
+ 
+ 
 /* ---------- Aprendizaje inteligente: sesión armada según tu diagnóstico y tus fallos ---------- */
 let SM = null;
 const pri = q => { const c = S.cards[q.id]; if (!c || !c.seen) return 2; return (c.due <= S.tick ? 3 : 0) + (4 - c.box) * 0.5 + c.fail * 0.3; };
@@ -879,10 +883,14 @@ function smartEnd() {
     <button class="btn" id="a">Otra sesión</button><button class="btn alt" id="h">Inicio</button>`;
   $("#a").onclick = smartStart; $("#h").onclick = home;
 }
-
-
+ 
+ 
 /* ---------- Cuentas con Supabase: registro, inicio de sesión y progreso en la nube ---------- */
-const HD = tok => ({ apikey: SUPA_KEY, "Content-Type": "application/json", Authorization: "Bearer " + (tok || SUPA_KEY) });
+const HD = tok => {
+  const h = { apikey: SUPA_KEY, "Content-Type": "application/json" };
+  if (tok || !SUPA_KEY.startsWith("sb_")) h.Authorization = "Bearer " + (tok || SUPA_KEY); // las claves nuevas (sb_publishable_...) no son JWT
+  return h;
+};
 const saveAC = () => { try { localStorage.setItem("ecb_sesion", JSON.stringify(AC)); } catch (e) {} };
 async function refreshTk() {
   try {
@@ -920,7 +928,9 @@ async function pull() {
 async function auth(mode, nombre, email, pass) {
   const r = await fetch(SUPA_URL + "/auth/v1/" + (mode === "up" ? "signup" : "token?grant_type=password"), { method: "POST", headers: HD(),
     body: JSON.stringify(mode === "up" ? { email, password: pass, data: { nombre } } : { email, password: pass }) });
-  const j = await r.json();
+  let j;
+  try { j = JSON.parse(await r.text()); }
+  catch (e) { throw new Error("No se pudo conectar con la base de datos. Revisa que SUPA_URL sea tu dirección https://xxxx.supabase.co y que SUPA_KEY esté completa."); }
   if (!r.ok) throw new Error(j.msg || j.error_description || j.message || "No se pudo completar la acción");
   if (!j.access_token) return "confirmar";
   AC = { tk: j.access_token, rt: j.refresh_token, uid: j.user.id, email: j.user.email, nombre: (j.user.user_metadata && j.user.user_metadata.nombre) || nombre || email.split("@")[0] };
@@ -961,7 +971,7 @@ function acctBind() {
   if ($("#lo")) $("#lo").onclick = () => { AC = null; try { localStorage.removeItem("ecb_sesion"); } catch (e) {} S = load(); authView("in"); };
   if ($("#li")) $("#li").onclick = () => authView("in");
 }
-
+ 
 $("#nHome").onclick = home; $("#nStats").onclick = stats;
 document.addEventListener("keydown", e => {
   if (view !== "quiz" || M || SM) return;
@@ -971,3 +981,4 @@ if (!AC && SUPA_URL) authView("in"); else { home(); if (AC) pull().then(() => { 
 </script>
 </body>
 </html>
+ 
