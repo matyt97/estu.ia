@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#12355B">
+<meta name="description" content="Práctica para el examen teórico de conducir Clase B en Chile, con repetición espaciada y progreso por capítulo.">
+<title>Examen Clase B · Chile</title>
+<style>
+:root{--bg:#EEF1EC;--card:#fff;--ink:#17202A;--mute:#5B6773;--brand:#12355B;--accent:#12355B;--yel:#F2C230;--ok:#1E7A46;--okbg:#E5F3EA;--bad:#B3261E;--badbg:#FBE9E7;--line:#D5DAD3;--road:#2B2F36;--tag:#DDE6EF;--sh:0 2px 8px rgba(18,53,91,.08);color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0E151D;--card:#17222E;--ink:#E8EDF2;--mute:#9AA8B5;--brand:#1A4673;--accent:#8DB8E8;--ok:#4CC27F;--okbg:#14301F;--bad:#FF7A70;--badbg:#3A1714;--line:#2B3947;--tag:#22364B;--sh:none}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:560px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;gap:10px;padding:6px 0 14px}
+.logo{flex:none;width:38px;height:38px;border-radius:10px;background:var(--yel);color:#1b1b1b;display:grid;place-items:center;font:800 1.3rem "Arial Narrow",sans-serif;border:3px solid #fff;outline:2px solid var(--brand)}
+.brand{font:800 1.25rem/1.1 "Arial Narrow","Roboto Condensed",sans-serif;color:var(--accent)}
+.brand small{display:block;font:500 .72rem "Segoe UI",system-ui,sans-serif;color:var(--mute);letter-spacing:.3px;margin-top:2px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;gap:8px;background:var(--card);border-top:1px solid var(--line);padding:6px 12px calc(6px + env(safe-area-inset-bottom))}
+nav button{flex:1;max-width:260px;font:inherit;font-size:.95rem;font-weight:600;padding:10px;border:0;background:transparent;color:var(--mute);border-radius:12px;cursor:pointer;min-height:46px}
+nav button.on{background:var(--brand);color:#fff}
+#app>*{animation:in .25s both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{display:flex;gap:14px;align-items:center;background:var(--brand);color:#fff;border-radius:16px;padding:18px;margin:0 0 12px}
+.sign{flex:none;width:58px;height:58px;border-radius:13px;background:var(--yel);color:#1b1b1b;display:grid;place-items:center;font:800 2rem "Arial Narrow",sans-serif;border:3px solid #fff}
+.hero h1{margin:0;font:800 1.4rem/1.15 "Arial Narrow","Roboto Condensed",sans-serif}
+.hero p{margin:4px 0 0;font-size:.85rem;opacity:.85}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--sh);margin-bottom:12px}
+.plate{background:var(--brand);color:#fff;border:4px solid #fff;outline:3px solid var(--brand);border-radius:14px;padding:18px;margin:6px 3px 18px}
+.plate h1{margin:0 0 4px;font:800 1.6rem/1.15 "Arial Narrow","Roboto Condensed",sans-serif}
+.plate p{margin:0 0 14px;opacity:.9}
+.road{height:26px;background:var(--road);border-radius:6px;position:relative;overflow:hidden}
+.road i{position:absolute;left:0;top:11px;height:4px;background:repeating-linear-gradient(90deg,var(--yel) 0 14px,transparent 14px 24px);transition:width .5s}
+.pct{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 8px;font-weight:600}
+.card .pct b{font:800 1.6rem "Arial Narrow",sans-serif;color:var(--accent)}
+.plate .pct{margin:8px 0 0;font-weight:700}
+.btn{display:block;width:100%;font:inherit;font-weight:700;font-size:1.1rem;min-height:58px;padding:14px 16px;border-radius:14px;border:0;cursor:pointer;background:var(--yel);color:#1b1b1b;margin:10px 0}
+.btn.alt{background:var(--card);border:2px solid var(--accent);color:var(--accent)}
+.btn.danger{background:transparent;border:2px solid var(--bad);color:var(--bad);font-size:.95rem;min-height:48px}
+.btn:active,.smart:active,.tile:active,.opt:active:not(:disabled){transform:scale(.985)}
+.btn:focus-visible,nav button:focus-visible,.opt:focus-visible,.tile:focus-visible,.smart:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.smart{display:flex;align-items:center;gap:14px;width:100%;text-align:left;font:inherit;border:0;border-radius:16px;padding:16px;margin:0 0 14px;background:var(--yel);color:#1b1b1b;cursor:pointer;min-height:74px;box-shadow:var(--sh)}
+.smart b{display:block;font-size:1.1rem}.smart small{opacity:.8;font-size:.85rem}
+.ic{flex:none;font-size:1.6rem;line-height:1}
+.lab{font-size:.85rem;color:var(--mute);font-weight:600}
+select,input{width:100%;min-height:52px;font:inherit;padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);margin:4px 0 6px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;font:inherit;font-weight:600;font-size:.98rem;text-align:left;padding:14px;min-height:92px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;cursor:pointer;box-shadow:var(--sh)}
+.tile .ic{font-size:1.5rem}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0 0}
+.stat{background:var(--bg);border-radius:10px;padding:10px;text-align:center}
+.stat b{display:block;font-size:1.35rem}
+.stat span{font-size:.78rem;color:var(--mute)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.bar i{display:block;height:100%;background:var(--yel);transition:width .3s}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--mute);font-size:.9rem;margin-bottom:8px}
+.tag{background:var(--tag);color:var(--accent);border-radius:8px;padding:3px 10px;font-weight:600}
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;font-size:1.15rem;font-weight:600;margin-bottom:12px;box-shadow:var(--sh)}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;font-size:1.05rem;min-height:58px;padding:12px 14px;margin:8px 0;background:var(--card);border:2px solid var(--line);border-radius:14px;cursor:pointer;color:var(--ink)}
+.opt b{flex:none;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--tag);color:var(--accent);font-size:.9rem}
+@media (hover:hover){.opt:hover:not(:disabled){border-color:var(--accent)}}
+.opt:disabled{cursor:default}
+.opt.good{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.good::after{content:"✓";margin-left:auto;color:var(--ok);font-weight:800}
+.opt.bad::after{content:"✕";margin-left:auto;color:var(--bad);font-weight:800}
+.fb{border-left:6px solid var(--ok);background:var(--card);border-radius:10px;padding:12px 14px;margin:12px 0;box-shadow:var(--sh);animation:in .25s both}
+.fb.bad{border-color:var(--bad)}
+.fb strong{display:block;font-size:1.1rem;margin-bottom:2px}
+h2{font:800 1.2rem "Arial Narrow","Roboto Condensed",sans-serif;color:var(--accent);margin:20px 0 8px}
+.row{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:6px 0;font-size:.95rem}
+.row .g{flex:1}
+.row small{color:var(--mute)}
+.mini{width:70px;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--ok)}
+.big{font:800 3.2rem/1 "Arial Narrow","Roboto Condensed",sans-serif;color:var(--accent);text-align:center;margin:10px 0}
+.center{text-align:center}.note{color:var(--mute);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">B</div>
+    <div class="brand">Examen Clase B<small>Libro del Nuevo Conductor · CONASET</small></div>
+    <nav><button id="nHome">🏠 Inicio</button><button id="nStats">📊 Progreso</button></nav>
+  </header>
+  <main id="app"></main>
+  <p class="note center" style="margin-top:24px">App de estudio no oficial, basada en el Libro del Nuevo Conductor (CONASET).</p>
+</div>
+
+<script>
+/* ================================================================
+   BANCO DE PREGUNTAS  —  AQUÍ AGREGAS MÁS
+   ----------------------------------------------------------------
+   Copia un bloque y pégalo al final de la lista (antes del "];").
+   Formato:
+     { id: 11,                     // número ÚNICO. Nunca lo cambies ni lo reutilices
+       cat: "Velocidad",           // tema (solo para mostrar)
+       q: "Pregunta...",
+       o: ["CORRECTA", "falsa 1", "falsa 2", "falsa 3"],   // la correcta va SIEMPRE primera;
+                                                          // el motor las mezcla solo
+       why: "Justificación breve." }
+   Puedes usar 2 a 4 opciones. Verifica cada dato con el Libro del Nuevo Conductor (CONASET).
+   ================================================================ */
+const QUESTIONS = [
+  { id: 1, cat: "Velocidad",
+    q: "¿Cuál es la velocidad máxima permitida en zona urbana, salvo que una señal indique otra?",
+    o: ["50 km/h", "60 km/h", "40 km/h", "70 km/h"],
+    why: "En zonas urbanas el límite general es 50 km/h. Las señales pueden fijar uno menor (por ejemplo, cerca de colegios)." },
+  { id: 2, cat: "Velocidad",
+    q: "¿Cuál es la velocidad máxima general en una ruta rural con una pista por sentido?",
+    o: ["100 km/h", "80 km/h", "120 km/h", "90 km/h"],
+    why: "Con una pista por sentido el límite rural es 100 km/h; con dos o más pistas por sentido sube a 120 km/h, salvo que una señal indique otro." },
+  { id: 3, cat: "Velocidad",
+    q: "¿Cuál es la velocidad máxima general en una autopista, si no hay señal que indique otro límite?",
+    o: ["120 km/h", "100 km/h", "110 km/h", "140 km/h"],
+    why: "En autopistas el límite general es 120 km/h. Siempre manda la señal puesta en el tramo." },
+  { id: 4, cat: "Alcohol · Tolerancia Cero",
+    q: "Según la Ley de Tolerancia Cero, ¿desde qué nivel de alcohol en la sangre se sanciona al conductor?",
+    o: ["0,3 g/L", "0,8 g/L", "1,0 g/L", "1,5 g/L"],
+    why: "Desde 0,3 g/L ya se considera conducción bajo la influencia del alcohol y hay sanción." },
+  { id: 5, cat: "Alcohol · Tolerancia Cero",
+    q: "¿Desde qué nivel de alcohol en la sangre se considera \"estado de ebriedad\"?",
+    o: ["0,8 g/L", "0,3 g/L", "0,5 g/L", "2,0 g/L"],
+    why: "Entre 0,3 y 0,79 g/L es \"bajo la influencia del alcohol\". Desde 0,8 g/L es estado de ebriedad, con sanciones más duras." },
+  { id: 6, cat: "Alcohol · Ley Emilia",
+    q: "¿Qué establece la Ley Emilia para quien causa la muerte o lesiones graves manejando bajo la influencia del alcohol?",
+    o: ["Cárcel efectiva y cancelación de la licencia de conducir", "Solo una multa en dinero", "Solo suspensión de la licencia por 1 mes", "Ninguna pena si el conductor se entrega"],
+    why: "La Ley Emilia endurece las penas: cárcel efectiva y cancelación de la licencia. Huir o no prestar auxilio agrava la sanción." },
+  { id: 7, cat: "Señales de tránsito",
+    q: "Una señal octogonal (8 lados) roja con la palabra PARE obliga a:",
+    o: ["Detenerse por completo y ceder el paso antes de continuar", "Reducir la velocidad y seguir si no viene nadie", "Tocar la bocina y pasar", "Detenerse solo si hay peatones"],
+    why: "El PARE exige detención total detrás de la línea. Solo se avanza cuando es seguro y se ha cedido el paso." },
+  { id: 8, cat: "Señales de tránsito",
+    q: "La señal con forma de triángulo invertido (punta hacia abajo) con borde rojo significa:",
+    o: ["Ceda el paso", "Pare", "Prohibido adelantar", "Peligro: curva"],
+    why: "El triángulo invertido es \"Ceda el paso\": hay que reducir y dar prioridad a quien circula por la vía preferente." },
+  { id: 9, cat: "Usuarios vulnerables",
+    q: "Hay un peatón cruzando por un paso peatonal sin semáforo. ¿Qué debe hacer el conductor?",
+    o: ["Detenerse y ceder el paso al peatón", "Tocar la bocina para que se apure", "Pasar rápido antes de que llegue a la calzada", "Reducir la velocidad y pasar si hay espacio"],
+    why: "En un paso peatonal el peatón tiene prioridad. El conductor debe detenerse hasta que termine de cruzar." },
+  { id: 10, cat: "Usuarios vulnerables",
+    q: "Al adelantar a un ciclista en la calzada, ¿qué distancia lateral mínima debes dejar?",
+    o: ["1,5 metros", "0,5 metros", "1 metro", "No hay distancia mínima"],
+    why: "La Ley de Convivencia Vial exige al menos 1,5 m al adelantar a un ciclista. Si no se puede, no se adelanta." }
+  // ← (formato largo, opcional) agrega preguntas arriba de esta línea
+];
+
+/* CAPÍTULOS DEL LIBRO (índice edición 2026). El número de capítulo es el "ch" de cada pregunta. */
+const CH = ["Los siniestros de tránsito", "Los principios de la conducción", "Convivencia vial", "La persona en el tránsito",
+  "Usuarios vulnerables", "Normas de circulación", "Circunstancias especiales", "Conducción eficiente", "Informaciones importantes"];
+const MAP = { 1: 6, 2: 6, 3: 6, 4: 4, 5: 4, 6: 4, 7: 6, 8: 6, 9: 5, 10: 3 }; // capítulo de las preguntas 1-10
+
+/* FORMATO CORTO PARA AGREGAR MUCHAS: [capítulo 1-9, pregunta, CORRECTA, falsa1, falsa2, falsa3, justificación]
+   Las ids se asignan solas (11, 12, 13...). Agrega siempre AL FINAL para no cambiar las ids anteriores. */
+const NEW = [
+  [1, "Según el libro, ¿por qué se prefiere hablar de \"siniestro\" y no de \"accidente\"?", "Porque la mayoría se puede prevenir; no ocurren por azar", "Porque solo se usa para choques graves", "Porque \"accidente\" está prohibido por ley", "Porque el conductor nunca es responsable", "Un siniestro tiene causas que se pueden evitar con decisiones y conductas seguras."],
+  [1, "¿Qué factor interviene en la mayor parte de los siniestros de tránsito?", "El factor humano: decisiones y conductas del conductor", "Solo las fallas mecánicas", "Solo el mal estado del camino", "Solo el clima", "La mayoría se relaciona con lo que hacen las personas, por eso se pueden prevenir."],
+  [1, "Según cifras de la OMS citadas en el libro, ¿cuánto cuestan los siniestros de tránsito a un país?", "Cerca del 2% de su PIB", "Menos del 0,1% del PIB", "Cerca del 20% del PIB", "No tienen costo económico", "Además del daño humano, los siniestros tienen un costo económico enorme."],
+  [2, "Si duplicas la velocidad, ¿qué pasa con la distancia de frenado?", "Se multiplica aproximadamente por 4", "Se duplica", "Se mantiene igual", "Se reduce a la mitad", "La energía crece con el cuadrado de la velocidad: al doblar la velocidad, frenar exige cerca de 4 veces más distancia."],
+  [2, "La distancia de detención total es la suma de:", "Distancia de reacción + distancia de frenado", "Distancia de frenado + distancia de adelantamiento", "Distancia de seguimiento + distancia visual", "Solo la distancia de frenado", "Primero recorres la distancia de reacción y luego la de frenado."],
+  [2, "¿Qué es la distancia de reacción?", "Lo que recorres desde que ves el peligro hasta que empiezas a frenar", "Lo que recorres desde que pisas el freno hasta detenerte", "La distancia entre tu auto y el de adelante", "La distancia que alcanzan las luces bajas", "Es el trayecto \"a ciegas\" mientras el cerebro decide y el pie llega al pedal."],
+  [3, "Antes de abrir la puerta de tu auto estacionado en la calle, debes:", "Mirar por el espejo y el costado para no golpear a ciclistas o peatones", "Abrirla rápido para no estorbar", "Avisar con la bocina", "Abrirla solo si el tránsito está detenido", "Abrir sin mirar puede golpear a un ciclista o motociclista que viene por el costado."],
+  [3, "En una vía con tránsito mixto, la convivencia vial implica:", "Anticipar a los demás y respetar su espacio y su prioridad", "Que tiene prioridad el vehículo más grande", "Que la calzada es solo para autos", "Acelerar para no entorpecer", "Convivir es compartir la vía de forma segura con todos los usuarios."],
+  [3, "Un conductor señala con el intermitente que quiere cambiar de pista. ¿Qué haces si es seguro?", "Facilitar la maniobra, sin acelerar para impedirla", "Acelerar para que no pase", "Tocar la bocina", "Ignorarlo", "La cortesía y la anticipación evitan conflictos y choques."],
+  [4, "¿Qué efecto tiene el alcohol en la conducción?", "Reduce la atención, aumenta el tiempo de reacción y falsea la percepción del riesgo", "Mejora los reflejos", "Solo afecta si se bebe en ayunas", "No afecta si después se toma café", "El café no elimina el alcohol; la única opción segura es no beber si vas a manejar."],
+  [4, "Si sientes sueño al volante, lo correcto es:", "Detenerte en un lugar seguro y descansar", "Abrir la ventana y subir la música", "Tomar una bebida energética y seguir", "Aumentar la velocidad para llegar antes", "El cansancio reduce la atención como el alcohol; los trucos no sustituyen el descanso."],
+  [4, "Usar el celular en la mano mientras conduces:", "Está prohibido y aumenta mucho el riesgo de siniestro", "Está permitido si el tránsito es lento", "Está permitido para mensajes cortos", "Está permitido si lo sostienes con el hombro", "Desvía la vista, las manos y la atención de la conducción."],
+  [5, "¿Hasta qué edad es obligatorio el sistema de retención infantil en vehículos particulares?", "Hasta los 8 años inclusive (según talla y peso)", "Hasta los 3 años", "Hasta los 12 años", "No es obligatorio", "El libro exige el sistema de retención hasta los 8 años inclusive, adecuado a la talla y el peso del niño."],
+  [5, "¿Pueden viajar menores de 12 años en el asiento delantero?", "No, por regla general (hay excepción en vehículos de cabina simple)", "Sí, si van con cinturón", "Sí, desde los 6 años", "Sí, si el copiloto lo autoriza", "Es una regla distinta a la del sistema de retención: no viajan adelante antes de los 12 años."],
+  [5, "Una embarazada que viaja en auto debe:", "Usar el cinturón con la banda baja bajo el abdomen", "Viajar sin cinturón para no presionar", "Usar solo la banda del pecho", "Viajar obligatoriamente atrás", "El cinturón protege a la madre y al bebé si se ubica bien."],
+  [5, "¿Por qué ciclistas y motociclistas son usuarios vulnerables?", "No tienen carrocería que los proteja y sufren lesiones más graves", "Porque siempre cometen infracciones", "Porque van más rápido que los autos", "Porque no deben respetar señales", "Ante un choque, su cuerpo recibe directamente el impacto."],
+  [6, "En una rotonda, ¿quién tiene la preferencia?", "Quien ya circula dentro de la rotonda", "Quien quiere entrar", "El vehículo más grande", "El que viene más rápido", "Quien entra debe ceder el paso a quienes ya están circulando."],
+  [6, "Semáforo con luz roja fija: ¿qué debes hacer?", "Detenerte antes de la línea de detención o del cruce", "Pasar si no viene nadie", "Reducir y continuar", "Tocar la bocina y pasar", "La luz roja obliga a detenerse hasta que cambie a verde."],
+  [6, "Una luz roja intermitente en un cruce equivale a:", "Una señal de Pare", "Una señal de Ceda el paso", "Que puedes pasar sin precaución", "Que el semáforo cambiará a verde", "Se debe detener por completo y avanzar solo cuando es seguro."],
+  [6, "Una línea central continua en la calzada significa:", "No se debe adelantar ni cruzar esa línea", "Puedes adelantar si no vienen autos", "Solo se prohíbe a los camiones", "Solo aplica de noche", "La línea continua prohíbe adelantar y cruzar al otro sentido."],
+  [7, "Con lluvia intensa, ¿qué debes hacer?", "Reducir la velocidad, aumentar la distancia y usar luces bajas", "Mantener la velocidad y usar luces altas", "Reducir la distancia para ver mejor", "Frenar siempre a fondo", "El pavimento mojado alarga la distancia de frenado."],
+  [7, "Si sufres hidroplaneo, ¿qué debes hacer?", "Soltar el acelerador y mantener el volante firme, sin frenar a fondo", "Frenar a fondo", "Girar el volante bruscamente", "Acelerar para recuperar tracción", "Los neumáticos flotan sobre el agua: movimientos bruscos empeoran la pérdida de control."],
+  [7, "En niebla densa, ¿qué luces debes usar?", "Luces bajas (y antiniebla si las tienes)", "Luces altas", "Solo luces de estacionamiento", "Ninguna, para no encandilar", "Las luces altas rebotan en la niebla y reducen la visibilidad."],
+  [8, "¿Qué hábito reduce el consumo de combustible?", "Acelerar y frenar de forma suave y anticipada", "Acelerar fuerte y frenar tarde", "Circular siempre con revoluciones altas", "Llevar carga innecesaria en el portaequipaje", "Anticipar el tránsito evita gastar energía en frenadas y aceleraciones bruscas."],
+  [8, "Mantener los neumáticos con la presión recomendada:", "Mejora la seguridad y reduce el consumo", "No influye en el consumo", "Aumenta el desgaste", "Solo importa en carretera", "Una presión incorrecta aumenta el consumo y el desgaste, y empeora el agarre."],
+  [8, "Llevar peso innecesario en el vehículo:", "Aumenta el consumo de combustible", "No cambia el consumo", "Reduce el consumo", "Mejora la estabilidad siempre", "A más peso, el motor trabaja más."],
+  [9, "¿Qué debes tener al día para circular con tu auto?", "Licencia vigente, permiso de circulación, SOAP y revisión técnica", "Solo la licencia", "Solo el permiso de circulación", "Ninguno si el auto es nuevo", "Son documentos y requisitos del conductor y del vehículo."],
+  [9, "¿Qué edad mínima se exige para obtener licencia clase B?", "18 años", "16 años", "15 años", "21 años", "La licencia no profesional clase B se obtiene desde los 18 años."],
+  [9, "El examen teórico clase B tiene:", "35 preguntas; se aprueba con al menos 33 de 38 puntos", "20 preguntas; se aprueba con 10 puntos", "50 preguntas; se aprueba con 60%", "35 preguntas; se aprueba con 20 puntos", "Tres preguntas valen doble y tienes 45 minutos."],
+  /* ---- Lote 2: capítulo 6 reforzado + todos los capítulos ---- */
+  [6, "Semáforo con luz amarilla fija:", "Precaución: detente si puedes hacerlo con seguridad", "Acelera para alcanzar a pasar", "Equivale a luz verde", "Equivale a Pare", "El amarillo avisa que viene el rojo."],
+  [6, "Una flecha verde en el semáforo permite:", "Avanzar solo en la dirección de la flecha", "Avanzar en cualquier dirección", "Detenerte siempre", "Girar sin ceder el paso a peatones", "La flecha autoriza únicamente ese movimiento."],
+  [6, "Al virar en un cruce con peatones cruzando, debes:", "Ceder el paso a los peatones", "Pasar antes que ellos", "Tocar la bocina", "Acelerar para despejar el cruce", "El peatón que cruza tiene prioridad sobre quien gira."],
+  [6, "¿Puedes estacionar sobre un paso peatonal?", "No, está prohibido", "Sí, por pocos minutos", "Sí, si dejas las balizas", "Sí, de noche", "Bloquea el cruce de los peatones."],
+  [6, "Estacionar en doble fila:", "Está prohibido: entorpece el tránsito y es peligroso", "Está permitido con balizas", "Está permitido por 5 minutos", "Está permitido en calles anchas", "Obliga a otros a invadir la otra pista."],
+  [6, "En caminos fuera de la ciudad, ¿qué luces debes mantener encendidas?", "Luces bajas, también de día", "Ninguna de día", "Luces altas", "Solo las de posición", "Mejora tu visibilidad ante otros conductores."],
+  [6, "Al cruzarte con otro vehículo de noche, debes:", "Cambiar a luces bajas para no encandilarlo", "Mantener las luces altas", "Apagar todas las luces", "Usar solo balizas", "Las luces altas encandilan y pueden causar un siniestro."],
+  [6, "El adelantamiento normal se realiza por:", "La izquierda", "La derecha", "La berma", "Cualquier lado", "Se adelanta por la izquierda, con visibilidad y espacio libre."],
+  [6, "¿Dónde está prohibido adelantar?", "En curvas, cimas y cruces", "En rectas largas con visibilidad", "En autopistas de día", "Detrás de un auto lento en recta", "Allí no ves si viene tránsito en sentido contrario."],
+  [6, "El intermitente para cambiar de pista o virar se debe usar:", "Con anticipación, antes de iniciar la maniobra", "Mientras ya giras", "Solo de noche", "Nunca, si la calle está vacía", "Avisa tu intención a los demás usuarios."],
+  [6, "El uso del cinturón de seguridad es obligatorio para:", "Todos los ocupantes del vehículo", "Solo el conductor", "Solo quienes van adelante", "Solo en carretera", "Rige tanto adelante como atrás."],
+  [6, "En un cruce sin señales, tiene preferencia:", "El vehículo que llega por la derecha", "El que llega por la izquierda", "El más rápido", "El más grande", "Quien viene por la derecha pasa primero."],
+  [6, "Si se acerca una ambulancia con sirena, debes:", "Despejar la vía y ceder el paso", "Acelerar para alejarte", "Seguirla de cerca", "Ignorarla", "Los vehículos de emergencia tienen preferencia."],
+  [6, "La bocina se debe usar:", "Solo para evitar un siniestro o advertir un peligro", "Para apurar al de adelante", "Para saludar", "Para avisar que estás molesto", "Su uso innecesario es una infracción y genera ruido."],
+  [6, "En un cruce de ferrocarril con barreras bajando o luces rojas:", "Debes detenerte y no cruzar", "Cruzar rápido", "Rodear la barrera", "Cruzar si no ves el tren", "Es muy peligroso: el tren no puede frenar a tiempo."],
+  [6, "Las señales de advertencia de peligro tienen forma de:", "Rombo con fondo amarillo", "Círculo con fondo azul", "Octágono rojo", "Rectángulo verde", "Avisan de peligros en la vía, como curvas o cruces."],
+  [6, "¿Puedes circular o estacionar en una ciclovía?", "No, está reservada a ciclistas", "Sí, si no hay ciclistas", "Sí, por pocos minutos", "Sí, de noche", "Es un espacio exclusivo para ciclistas."],
+  [6, "Si debes detener el vehículo por una emergencia en la calzada:", "Usar balizas y poner los triángulos detrás del vehículo", "Quedarte sin señalizar", "Poner los triángulos delante", "Apagar las luces", "Así adviertes a quienes vienen detrás."],
+  [6, "La distancia al vehículo de adelante debe ser:", "Suficiente para frenar a tiempo, y mayor con lluvia o más velocidad", "La mínima posible", "Siempre de 1 metro", "Da igual si vas atento", "Más velocidad y piso mojado exigen más distancia."],
+  [6, "Las señales reglamentarias suelen ser:", "Circulares con borde rojo y obligan o prohíben", "Rombos amarillos", "Solo informativas", "Opcionales", "Su cumplimiento es obligatorio."],
+  [6, "Aunque estés bajo el límite de velocidad, debes reducirla si:", "Las condiciones (lluvia, niebla, tránsito) lo exigen", "Nunca", "Solo si hay carabineros", "Solo de noche", "El límite es un máximo, no una velocidad segura."],
+  [6, "Al llegar a una línea de detención en luz roja:", "Detenerte antes de la línea", "Detenerte sobre la línea", "Cruzarla y esperar", "Detenerte en medio del cruce", "La línea marca dónde debe parar el vehículo."],
+  [6, "Para girar a la izquierda debes:", "Indicar con anticipación y ceder el paso a quien viene de frente", "Girar sin indicar", "Pasar primero que los de frente", "Frenar en medio del cruce", "Quien gira no debe cortar el paso de quienes avanzan de frente."],
+  [1, "Además del factor humano, ¿qué otros factores influyen en un siniestro?", "El vehículo, la vía y el entorno", "Solo la suerte", "Solo la edad del auto", "Ninguno", "Un siniestro suele tener varias causas combinadas."],
+  [1, "Los siniestros de tránsito generan consecuencias:", "Humanas, familiares y económicas", "Solo materiales", "Solo para el conductor", "Solo legales", "Afectan a víctimas, familias y la sociedad."],
+  [1, "Respetar los límites de velocidad ayuda a:", "Reducir la probabilidad y la gravedad de los siniestros", "Llegar siempre más rápido", "Gastar más combustible", "Evitar usar el cinturón", "A menor velocidad, menos energía en un choque."],
+  [1, "El cinturón de seguridad:", "Reduce el riesgo de lesiones graves y muerte", "Solo sirve en carretera", "No sirve a baja velocidad", "Es opcional atrás", "Sujeta al ocupante y absorbe parte del impacto."],
+  [2, "En una curva, a mayor velocidad:", "Mayor es la tendencia del vehículo a salirse de su trayectoria", "Mejor es el agarre", "Menor es el riesgo", "No cambia nada", "Las fuerzas que empujan hacia afuera aumentan."],
+  [2, "Los neumáticos son importantes porque:", "Son el único contacto del vehículo con el suelo", "Solo sirven de adorno", "No influyen en el frenado", "Solo importan en lluvia", "Agarre, frenado y dirección dependen de ellos."],
+  [2, "Con frenos ABS en una emergencia, debes:", "Pisar el freno firme y sostenido, y girar si es necesario", "Bombear el pedal", "Soltar el freno", "Usar solo el freno de mano", "El ABS evita que las ruedas se bloqueen."],
+  [2, "A mayor velocidad, el campo visual del conductor:", "Se reduce", "Se amplía", "Se mantiene", "Se duplica", "Ves menos a los lados y detectas peligros más tarde."],
+  [2, "Un vehículo muy cargado:", "Necesita más distancia para frenar", "Frena en menos distancia", "Frena igual", "Mejora su estabilidad siempre", "Más masa exige más fuerza para detenerse."],
+  [3, "Si ves a un peatón con bastón blanco cruzando, debes:", "Detenerte y esperar a que cruce", "Tocar la bocina", "Pasar despacio", "Indicarle que se apure", "Es una persona con discapacidad visual y tiene preferencia."],
+  [3, "Antes de cambiar de pista debes:", "Mirar los espejos y el punto ciego", "Solo usar el intermitente", "Acelerar", "Tocar la bocina", "El punto ciego puede ocultar vehículos o motos."],
+  [3, "Seguir muy de cerca al vehículo de adelante:", "Reduce tu tiempo para reaccionar y es peligroso", "Ahorra combustible", "Te hace llegar antes sin riesgo", "Es normal en ciudad", "Una frenada inesperada te puede hacer chocar."],
+  [3, "Si otro conductor te agrede o te insulta, lo recomendable es:", "Mantener la calma y no responder", "Responder con gestos", "Perseguirlo", "Frenar de golpe", "Reaccionar con agresividad aumenta el riesgo."],
+  [3, "Respecto de las motocicletas, debes:", "Prestar atención extra: son difíciles de ver y vulnerables", "Ignorarlas", "Cerrarles el paso", "Bocinarlas", "Suelen quedar en el punto ciego."],
+  [4, "El único modo de que el cuerpo elimine el alcohol es:", "El paso del tiempo", "Tomar café", "Una ducha fría", "Comer algo", "Ningún truco acelera ese proceso."],
+  [4, "Si un medicamento causa somnolencia, debes:", "Evitar conducir y consultar a un profesional", "Conducir con cuidado", "Tomar café", "Conducir solo en ciudad", "Reduce la atención y la capacidad de reacción."],
+  [4, "Una distracción al volante puede ser:", "Comer, manipular la radio o conversar con intensidad", "Solo el celular", "Nada, si conduces rápido", "Solo mirar los espejos", "Cualquier cosa que aleje la atención de la vía."],
+  [4, "Conducir con mucha rabia o estrés:", "Reduce la atención y favorece decisiones riesgosas", "Mejora la concentración", "No afecta", "Ayuda a llegar antes", "Las emociones fuertes afectan el juicio."],
+  [4, "El cansancio al conducir:", "Aumenta el tiempo de reacción", "Mejora los reflejos", "No cambia nada", "Solo afecta de noche", "Reduce la atención y la capacidad de decisión."],
+  [5, "Cerca de niños y adultos mayores, el conductor debe:", "Reducir la velocidad y tener más paciencia", "Mantener la velocidad", "Tocar la bocina", "Pasar rápido", "Pueden cruzar más lento o actuar de forma impredecible."],
+  [5, "¿Se puede dejar a un niño solo dentro del auto?", "No, es peligroso", "Sí, con la ventana abierta", "Sí, por pocos minutos", "Sí, si duerme", "El interior puede calentarse muy rápido, además de otros riesgos."],
+  [5, "Los niños que usan sistema de retención infantil deben ir:", "En el asiento trasero", "En el asiento delantero", "En la maleta", "Sobre las piernas del copiloto", "El asiento trasero es el más seguro para ellos."],
+  [5, "El casco para quien conduce una motocicleta es:", "Obligatorio", "Opcional de día", "Opcional en ciudad", "Obligatorio solo en carretera", "Protege la cabeza, la zona más vulnerable."],
+  [5, "Si hay escolares cruzando la calle, debes:", "Detenerte y esperar", "Pasar despacio", "Tocar la bocina", "Pasar rápido", "Los niños son impredecibles y vulnerables."],
+  [5, "De noche, ciclistas y peatones son difíciles de ver, por lo que debes:", "Reducir la velocidad y extremar la atención", "Usar luces altas siempre", "Mantener la velocidad", "Bocinar", "Su baja visibilidad exige más precaución."],
+  [7, "Conducir de noche exige:", "Reducir la velocidad por la menor visibilidad", "Aumentar la velocidad", "Apagar el panel", "Usar solo luces de posición", "Ves menos lejos que de día."],
+  [7, "Si te encandila otro vehículo, ¿qué haces?", "Mirar hacia el borde derecho de la calzada y reducir la velocidad", "Mirar de frente a sus luces", "Cerrar los ojos", "Acelerar", "Así mantienes la referencia sin recibir la luz directa."],
+  [7, "Si revienta un neumático, debes:", "Sujetar el volante firme y reducir sin frenar bruscamente", "Frenar a fondo", "Girar bruscamente", "Acelerar", "El frenado brusco puede hacerte perder el control."],
+  [7, "En una bajada larga, es recomendable:", "Usar el freno motor con una marcha adecuada", "Ir en punto muerto", "Frenar continuamente", "Apagar el motor", "Frenar sin parar puede sobrecalentar los frenos."],
+  [7, "Con viento lateral fuerte, debes:", "Sujetar el volante con firmeza y reducir la velocidad", "Acelerar", "Soltar el volante", "Frenar de golpe", "El viento puede desviar tu vehículo."],
+  [8, "Al ver un semáforo en rojo a lo lejos, es eficiente:", "Soltar el acelerador y dejar rodar", "Acelerar y frenar fuerte", "Cambiar a marcha baja", "Ir en punto muerto", "Ahorras combustible y frenas con suavidad."],
+  [8, "Mantener el motor con sus mantenciones al día:", "Reduce el consumo y las emisiones", "No influye", "Aumenta el consumo", "Solo sirve para el seguro", "Un motor en buen estado funciona de forma más eficiente."],
+  [8, "Mantener una velocidad constante y moderada:", "Ahorra combustible", "Aumenta el consumo", "No influye", "Desgasta más el motor", "Evita aceleraciones y frenadas innecesarias."],
+  [8, "Si vas a estar detenido un tiempo largo, lo eficiente es:", "Apagar el motor", "Dejarlo acelerado", "Subir el aire acondicionado", "Mantenerlo en ralentí", "El ralentí prolongado gasta combustible sin avanzar."],
+  [8, "Un exceso de peso o accesorios sobre el techo:", "Aumenta el consumo de combustible", "Reduce el consumo", "No cambia nada", "Mejora la aerodinámica", "Más resistencia y peso hacen trabajar más al motor."],
+  [9, "Para obtener la licencia clase B, además del examen teórico, se rinde:", "Examen práctico y evaluación médica", "Solo el teórico", "Solo un examen oral", "Un test de velocidad", "La licencia exige conocimientos, habilidades y aptitud física."],
+  [9, "La revisión técnica sirve para:", "Verificar que el vehículo cumple condiciones de seguridad y emisiones", "Pagar impuestos", "Renovar la licencia", "Cambiar de dueño", "Es un control del estado del vehículo."],
+  [9, "El SOAP (Seguro Obligatorio de Accidentes Personales):", "Cubre lesiones a los ocupantes y a terceros por siniestros de tránsito", "Cubre daños al vehículo", "Es opcional", "Solo cubre al conductor", "Es obligatorio para circular."],
+  [9, "El permiso de circulación:", "Se renueva todos los años", "Se paga una sola vez", "Es opcional", "Dura 10 años", "Es necesario para que el vehículo circule legalmente."],
+  /* ---- Lote 3: módulos por capítulo (importados) ---- */
+  [1, "¿Por qué se usa el término \"siniestro\" en vez de \"accidente\"?", "Porque la mayoría puede prevenirse y no ocurre por azar", "Porque solo se usa en choques graves", "Porque \"accidente\" está prohibido por ley", "Porque el conductor nunca tiene responsabilidad", "Un siniestro tiene causas evitables con conductas y decisiones seguras."],
+  [1, "¿Qué factor interviene en la mayoría de los siniestros?", "El factor humano", "Solo el clima", "Solo la mala señalización", "Solo las fallas del auto", "Lo que hacen las personas al volante es lo que más pesa, por eso se pueden prevenir."],
+  [1, "¿Cuáles son los tres grandes factores que pueden combinarse en un siniestro?", "Humano, vehículo y vía/entorno", "Velocidad, color y marca", "Día, noche y lluvia", "Peatón, ciclista y moto", "Normalmente concurren varios factores a la vez."],
+  [1, "¿Cuál es un ejemplo de factor del vehículo?", "Frenos o neumáticos en mal estado", "Cansancio del conductor", "Hoyos en el pavimento", "Exceso de velocidad", "Una mala mantención afecta el frenado y la estabilidad."],
+  [1, "¿Cuál es un ejemplo de factor de la vía o el entorno?", "Pavimento en mal estado o señalización deficiente", "Alcohol en la sangre", "Frenos gastados", "Distracción con el celular", "Son condiciones externas al conductor y al vehículo."],
+  [1, "¿Cuál es un ejemplo de factor humano?", "Distracción, fatiga o exceso de velocidad", "Una curva cerrada", "Un neumático desgastado", "Una calle sin iluminación", "Son conductas y estados del conductor."],
+  [1, "Según cifras de la OMS citadas en el libro, ¿cuánto pueden costar los siniestros a un país?", "Cerca del 2% de su PIB", "Menos del 0,1%", "Cerca del 20%", "Nada, solo hay costos humanos", "Además del dolor humano, tienen un alto costo económico."],
+  [1, "Las consecuencias de un siniestro son:", "Humanas, familiares, sociales y económicas", "Solo materiales", "Solo legales", "Solo para quien conducía", "Afectan a víctimas, familias y a toda la sociedad."],
+  [1, "A mayor velocidad en un choque:", "Mayor es la gravedad de las lesiones", "Menor es la gravedad de las lesiones", "La gravedad no cambia", "Solo cambia el daño al auto", "Más velocidad significa más energía que absorber en el impacto.", 1],
+  [1, "¿Hasta qué edad es obligatorio el sistema de retención infantil?", "Hasta los 8 años inclusive (según talla y peso)", "Hasta los 3 años", "Hasta los 12 años", "No es obligatorio", "Es lo que señala el libro para vehículos particulares.", 1],
+  [1, "¿Desde qué concentración de alcohol en la sangre se sanciona al conductor?", "0,3 g/L", "0,8 g/L", "1,0 g/L", "1,5 g/L", "Desde 0,3 g/L ya es conducción bajo la influencia del alcohol.", 1],
+  [1, "La mayoría de los siniestros:", "Son evitables", "Son impredecibles", "Son culpa del destino", "Son siempre por fallas mecánicas", "Se pueden prevenir con prudencia y buenas decisiones."],
+  [1, "Conducir con cansancio:", "Aumenta el tiempo de reacción", "Mejora la atención", "No afecta si hay música", "Solo afecta de noche", "El sueño reduce la atención y la capacidad de decidir."],
+  [1, "La mantención periódica del vehículo ayuda a:", "Evitar fallas que pueden causar siniestros", "Solo ahorrar combustible", "Aumentar la velocidad", "Evitar el uso del cinturón", "Frenos, luces y neumáticos en buen estado previenen fallas."],
+  [1, "¿Quién es responsable de la seguridad vial?", "Todos los usuarios de la vía", "Solo Carabineros", "Solo los conductores", "Solo el Estado", "Conductores, peatones, ciclistas y autoridades."],
+  [1, "¿Cuáles son usuarios vulnerables?", "Peatones, ciclistas y motociclistas", "Solo conductores de camiones", "Solo conductores de taxis", "Ninguno", "No tienen carrocería que los proteja."],
+  [1, "Si presencias un siniestro, lo primero es:", "Proteger el lugar y pedir ayuda", "Retirarte", "Mover a los heridos de inmediato", "Sacar fotos", "Señaliza y llama a los servicios de emergencia."],
+  [1, "¿Qué números de emergencia se usan en Chile?", "133 (Carabineros), 131 (ambulancia) y 132 (Bomberos)", "100, 101 y 102", "911 para todo", "120, 121 y 122", "Son los números oficiales de emergencia."],
+  [1, "¿Se debe mover a un herido grave?", "No, salvo peligro inminente (incendio, atropello)", "Sí, siempre", "Solo para sacarle fotos", "Sí, para darle agua", "Moverlo puede agravar lesiones, por ejemplo de columna."],
+  [1, "Huir del lugar sin prestar auxilio:", "Es una infracción grave y puede ser delito", "Es una falta menor", "Es permitido si no hubo heridos", "Es permitido si el seguro cubre", "Se agrava la responsabilidad legal."],
+  [2, "La distancia de detención total es:", "Distancia de reacción + distancia de frenado", "Solo la distancia de frenado", "Distancia de seguimiento + visual", "Distancia de adelantamiento", "Primero recorres la distancia de reacción y luego la de frenado."],
+  [2, "La distancia de reacción es lo que recorres:", "Desde que ves el peligro hasta que empiezas a frenar", "Desde que frenas hasta detenerte", "Entre tu auto y el de adelante", "Con las luces altas", "Es el tramo en que el conductor percibe y decide."],
+  [2, "Si duplicas la velocidad, la distancia de frenado:", "Se multiplica aproximadamente por 4", "Se duplica", "Se mantiene", "Se reduce a la mitad", "La energía crece con el cuadrado de la velocidad.", 1],
+  [2, "¿Qué alarga la distancia de reacción?", "Alcohol o cansancio", "Neumáticos nuevos", "Pavimento seco", "Buena visibilidad", "Retrasan la percepción y la decisión."],
+  [2, "Con pavimento mojado, la distancia de frenado:", "Aumenta", "Disminuye", "Es igual", "Depende del color del auto", "Hay menos adherencia entre neumático y suelo."],
+  [2, "La inercia es:", "La tendencia de un cuerpo a mantener su movimiento", "La capacidad de frenar", "La fuerza del motor", "La presión de los neumáticos", "Por eso en un choque los ocupantes siguen avanzando si no llevan cinturón."],
+  [2, "En una frenada de emergencia con ABS, debes:", "Pisar firme y sostenido, y girar si es necesario", "Bombear el pedal", "Soltar el pedal", "Usar el freno de mano", "El ABS evita el bloqueo de las ruedas."],
+  [2, "Con neumáticos gastados:", "Aumenta el riesgo de hidroplaneo y la distancia de frenado", "Mejora el agarre", "No cambia nada", "Se reduce el consumo siempre", "Evacuan peor el agua y agarran menos."],
+  [2, "Una presión incorrecta de neumáticos:", "Afecta la seguridad y aumenta el consumo", "No influye en nada", "Solo afecta la comodidad", "Mejora el frenado", "Altera el agarre, el desgaste y el consumo."],
+  [2, "Los espejos deben ajustarse:", "Antes de partir", "Durante la marcha", "Solo de noche", "Solo en carretera", "Ajustarlos en movimiento es peligroso."],
+  [2, "La posición correcta del asiento permite:", "Alcanzar los pedales con las piernas ligeramente flexionadas", "Estirar al máximo las piernas", "Ir lo más lejos posible del volante", "Ir recostado", "Así tienes control y respuesta rápida."],
+  [2, "El apoyacabezas debe quedar:", "A la altura de la parte alta de la cabeza", "A la altura del cuello", "Bajo los hombros", "Retirado", "Protege de lesiones cervicales en un impacto."],
+  [2, "A mayor velocidad, el campo visual:", "Se reduce", "Se amplía", "Se mantiene", "Se duplica", "Ves menos a los lados y detectas peligros más tarde."],
+  [2, "Al tomar una curva, lo correcto es:", "Reducir la velocidad antes de entrar", "Frenar dentro de la curva", "Acelerar al entrar", "Soltar el volante", "Frenar en plena curva puede hacerte perder el control."],
+  [2, "Mirar lejos mientras conduces sirve para:", "Anticipar peligros", "Distraerte", "Ir más rápido", "Evitar los espejos", "Anticipar da más tiempo para reaccionar."],
+  [2, "La distancia de seguimiento debe ser mayor cuando:", "Aumenta la velocidad o el piso está mojado", "Hay poco tránsito", "Vas más lento", "Vas con luces bajas", "Necesitas más espacio para frenar."],
+  [2, "El freno de mano se usa normalmente para:", "Mantener el vehículo detenido", "Frenar a alta velocidad", "Tomar curvas", "Adelantar", "Su función habitual es inmovilizar el auto estacionado."],
+  [2, "La frenada normal debe ser:", "Progresiva", "Brusca", "Intermitente", "Solo con freno motor", "Es más segura y cómoda."],
+  [2, "El punto ciego es:", "La zona que no ves en los espejos", "La zona iluminada por las luces", "Un defecto del espejo", "La zona delantera del auto", "Hay que mirar por sobre el hombro antes de cambiar de pista."],
+  [2, "El cinturón se usa correctamente cuando:", "La banda cruza el hombro y el pecho y la faja queda sobre la pelvis", "La banda pasa por el cuello", "La faja queda sobre el abdomen", "Se coloca bajo el brazo", "Así reparte la fuerza en las zonas más resistentes del cuerpo."],
+  [3, "La convivencia vial implica:", "Respetar el espacio y la prioridad de los demás usuarios", "Que gana el vehículo más grande", "Que la calzada es solo de autos", "Acelerar para no estorbar", "Se comparte la vía de forma segura entre todos."],
+  [3, "Al adelantar a un ciclista, la separación lateral mínima es:", "1,5 metros", "0,5 metros", "1 metro", "2,5 metros", "La Ley de Convivencia Vial exige al menos 1,5 m. Si no se puede, no se adelanta.", 1],
+  [3, "Antes de abrir la puerta de tu auto estacionado:", "Miras por el espejo y el costado", "La abres rápido", "Avisas con la bocina", "Solo la abres si hay luz verde", "Un ciclista o moto puede venir por el costado."],
+  [3, "Un conductor indica con el intermitente que quiere cambiar de pista. Si es seguro:", "Facilitas la maniobra sin acelerar", "Aceleras para impedirlo", "Tocas la bocina", "Lo ignoras", "La cortesía evita conflictos."],
+  [3, "Ante un peatón con bastón blanco que cruza:", "Te detienes y esperas", "Le tocas la bocina", "Pasas despacio", "Le indicas que se apure", "Es una persona con discapacidad visual y tiene preferencia."],
+  [3, "Seguir muy de cerca a otro vehículo:", "Reduce tu tiempo de reacción y es peligroso", "Ahorra combustible", "Es normal en ciudad", "Te hace llegar sin riesgo", "Una frenada inesperada te puede hacer chocar."],
+  [3, "Si otro conductor te insulta o te agrede:", "Mantienes la calma y no respondes", "Respondes con gestos", "Lo persigues", "Frenas de golpe", "La agresividad aumenta el riesgo."],
+  [3, "Respecto de las motocicletas:", "Prestas atención extra: son difíciles de ver y vulnerables", "Las ignoras", "Les cierras el paso", "Las bocinas", "Suelen quedar en el punto ciego."],
+  [3, "En un cruce con tránsito detenido, ¿puedes entrar si no tienes espacio para salir?", "No, bloquearías el cruce", "Sí, siempre", "Sí, si tienes apuro", "Sí, si usas la bocina", "Bloquear cruces entorpece a todos y es peligroso."],
+  [3, "Los estacionamientos reservados para personas con discapacidad:", "Son solo para quienes tienen credencial y lo necesitan", "Pueden usarse por poco tiempo", "Pueden usarse con balizas", "Pueden usarse en la noche", "Es una forma de respetar la accesibilidad."],
+  [3, "Los vehículos de emergencia con sirena:", "Se les despeja la vía y se les cede el paso", "Se siguen de cerca", "Se ignoran", "Se adelantan", "Tienen preferencia por la urgencia."],
+  [3, "Las luces de un vehículo sirven también para:", "Comunicar intenciones de forma clara y a tiempo", "Intimidar a otros", "Pedir paso con luces altas insistentes", "Saludar", "Se debe evitar el uso agresivo o innecesario."],
+  [3, "La bocina se usa:", "Solo para evitar un siniestro o advertir un peligro", "Para apurar al de adelante", "Para saludar", "Para expresar enojo", "Su uso innecesario es una infracción."],
+  [3, "Al cruzarte con un ciclista en la calle, debes:", "Reducir la velocidad y dejar espacio", "Pasarle cerca", "Bocinarlo", "Acelerar", "Su estabilidad es frágil y está expuesto."],
+  [3, "Los peatones tienen preferencia:", "En los cruces habilitados (por ejemplo, el paso peatonal)", "Solo en la vereda", "Solo con semáforo", "Nunca", "El conductor debe detenerse y ceder el paso."],
+  [3, "Usar el celular en la mano al conducir:", "Está prohibido", "Está permitido en tránsito lento", "Está permitido para mensajes breves", "Está permitido en un semáforo", "Distrae la vista, las manos y la atención."],
+  [3, "¿Qué actitud mejora la convivencia vial?", "Anticipar y comunicar tus movimientos", "Maniobrar sin avisar", "Competir por el espacio", "Acelerar en los cruces", "La previsibilidad evita sorpresas."],
+  [3, "Ante un bus que sale de un paradero con intermitente:", "Le cedes el paso si es seguro", "Aceleras para pasar primero", "Lo bocinas", "Lo adelantas por la derecha", "Facilitar su salida mejora la fluidez."],
+  [3, "Los vehículos más grandes tienen:", "Zonas de poca visibilidad (puntos ciegos más amplios)", "Prioridad por su tamaño", "Ninguna zona sin visibilidad", "Mayor facilidad para frenar", "Conviene no ubicarse en esas zonas."],
+  [3, "Si ves a un grupo de ciclistas, lo correcto es:", "Adelantarlos con 1,5 m o más y sin apuro", "Adelantarlos rozándolos", "Seguirlos muy de cerca", "Tocar la bocina", "Mantener separación segura."],
+  [3, "El respeto entre usuarios de la vía contribuye a:", "Menos siniestros y un tránsito más fluido", "Más conflictos", "Más velocidad", "Más infracciones", "La convivencia disminuye el riesgo para todos."],
+  [4, "Según Tolerancia Cero, ¿desde qué concentración de alcohol en la sangre se sanciona?", "0,3 g/L", "0,8 g/L", "1,0 g/L", "1,5 g/L", "Desde 0,3 g/L hay sanción por conducir bajo la influencia del alcohol.", 1],
+  [4, "¿Desde qué nivel se considera \"estado de ebriedad\"?", "0,8 g/L", "0,3 g/L", "0,5 g/L", "2,0 g/L", "Entre 0,3 y 0,79 es \"bajo la influencia\"; desde 0,8, estado de ebriedad.", 1],
+  [4, "¿Qué establece la Ley Emilia si se causa muerte o lesiones graves conduciendo bajo la influencia del alcohol?", "Cárcel efectiva y cancelación de la licencia", "Solo una multa", "Suspensión por un mes", "Ninguna pena si se entrega", "Endurece las penas y agrava huir o no prestar auxilio.", 1],
+  [4, "El alcohol en la conducción:", "Reduce la atención, aumenta el tiempo de reacción y falsea el riesgo", "Mejora los reflejos", "No afecta si se come", "Solo afecta en ayunas", "Distorsiona la percepción y la decisión."],
+  [4, "El único modo de eliminar el alcohol del cuerpo es:", "El paso del tiempo", "El café", "Una ducha fría", "Dormir cinco minutos", "Ningún truco acelera ese proceso."],
+  [4, "Si vas a manejar, lo más seguro respecto del alcohol es:", "No beber", "Beber poco", "Beber con comida", "Beber agua después", "Es la única opción realmente segura."],
+  [4, "Si sientes sueño al volante:", "Te detienes en un lugar seguro y descansas", "Subes la música", "Abres la ventana", "Aumentas la velocidad", "Los trucos no sustituyen el descanso."],
+  [4, "El cansancio:", "Aumenta el tiempo de reacción", "Mejora los reflejos", "No afecta de día", "No afecta con café", "Reduce la atención y la capacidad de decisión."],
+  [4, "Un medicamento que causa somnolencia:", "Exige evitar conducir y consultar a un profesional", "No afecta al conducir", "Solo afecta de noche", "Se compensa con café", "Reduce la atención y la reacción."],
+  [4, "Las drogas ilícitas en la conducción:", "Alteran la percepción y la reacción", "Mejoran la concentración", "Son inofensivas en ciudad", "Solo afectan al principiante", "Aumentan el riesgo de siniestro."],
+  [4, "¿Cuál es una distracción al volante?", "Comer, manipular la radio o conversar intensamente", "Mirar los espejos", "Revisar la velocidad", "Mantener la distancia", "Cualquier cosa que aparte la atención de la vía."],
+  [4, "Conducir con rabia o estrés:", "Reduce la atención y favorece decisiones riesgosas", "Mejora la concentración", "No afecta", "Ayuda a llegar antes", "Las emociones fuertes afectan el juicio."],
+  [4, "La percepción del riesgo:", "Es la capacidad de reconocer un peligro a tiempo", "Es igual en todas las personas", "No se modifica con el alcohol", "No se puede mejorar", "El alcohol y el cansancio la reducen."],
+  [4, "El exceso de confianza:", "Lleva a subestimar riesgos", "Evita siniestros", "Mejora la anticipación", "Solo afecta a los principiantes", "Un conductor experimentado también puede equivocarse."],
+  [4, "La visión es importante porque:", "Aporta la mayor parte de la información para conducir", "Solo se usa de noche", "No se ve afectada por el cansancio", "No cambia con la edad", "Si usas lentes para conducir, debes llevarlos siempre."],
+  [4, "Si tu licencia indica uso de lentes:", "Los usas siempre al conducir", "Los usas solo de noche", "Los usas si recuerdas", "Los usas solo en carretera", "Es una condición de tu licencia."],
+  [4, "Si tienes una enfermedad que afecta la conducción:", "Consultas a un profesional y ajustas tu conducción", "La ignoras", "Conduces igual", "Conduces solo de día", "Tu salud influye en la seguridad de todos."],
+  [4, "¿Qué es la fatiga visual?", "El cansancio de la vista que reduce la capacidad de ver peligros", "Un error del vehículo", "Una ventaja de manejar de noche", "Un efecto del alcohol solamente", "Conviene descansar en viajes largos."],
+  [4, "En un viaje largo se recomienda:", "Hacer pausas periódicas", "Manejar sin parar", "Aumentar la velocidad", "Manejar de madrugada", "Descansar mejora la atención."],
+  [4, "El principal riesgo de beber y manejar es:", "Provocar un siniestro grave o fatal", "Solo la multa", "Solo perder el auto", "Una discusión", "Aumenta mucho la probabilidad de lesiones o muerte."],
+  [4, "Si un amigo bebió y quiere manejar:", "Lo disuades y buscas otra opción (conductor designado, taxi)", "Lo dejas ir", "Lo acompañas sin decir nada", "Le dices que maneje más lento", "Es una forma concreta de prevenir siniestros."],
+  [5, "Hay un peatón cruzando por un paso peatonal sin semáforo:", "Te detienes y le cedes el paso", "Tocas la bocina", "Pasas rápido", "Reduces y pasas si hay espacio", "El peatón tiene prioridad en los cruces habilitados."],
+  [5, "¿Se puede dejar a un niño solo en el auto?", "No, es peligroso", "Sí, con la ventana abierta", "Sí, por unos minutos", "Sí, si duerme", "El interior puede calentarse muy rápido y hay otros riesgos."],
+  [5, "Una embarazada debe usar el cinturón:", "Con la banda baja, bajo el abdomen", "Solo la banda del pecho", "No debe usarlo", "Sobre el abdomen", "Protege a la madre y al bebé si se ubica bien."],
+  [5, "El casco para el motociclista es:", "Obligatorio", "Opcional de día", "Opcional en ciudad", "Obligatorio solo en carretera", "Protege la cabeza, la zona más vulnerable."],
+  [5, "Si hay escolares cruzando la calle:", "Te detienes y esperas", "Pasas despacio", "Tocas la bocina", "Pasas rápido", "Los niños son impredecibles y vulnerables."],
+  [5, "Cerca de niños y adultos mayores, debes:", "Reducir la velocidad y tener paciencia", "Mantener la velocidad", "Pasar rápido", "Bocinar", "Pueden cruzar más lento o de forma impredecible."],
+  [5, "Al adelantar a un ciclista, la separación mínima es:", "1,5 m", "0,5 m", "1 m", "Ninguna", "Si no hay espacio, no se adelanta."],
+  [5, "En una ciclovía:", "Está prohibido circular y estacionar", "Puedes estacionar un momento", "Puedes circular si no hay ciclistas", "Puedes detenerte con balizas", "Es un espacio exclusivo para ciclistas."],
+  [5, "Al virar con peatones cruzando:", "Les cedes el paso", "Pasas antes que ellos", "Aceleras", "Tocas la bocina", "Quien gira debe ceder el paso a los peatones."],
+  [5, "Un peatón con discapacidad visual cruza:", "Te detienes y esperas", "Pasas despacio", "Tocas la bocina", "Le indicas que se apure", "Su preferencia es plena."],
+  [5, "Las personas mayores como peatones:", "Pueden necesitar más tiempo para cruzar", "Cruzan siempre rápido", "No son vulnerables", "No usan pasos peatonales", "Hay que tener paciencia."],
+  [5, "¿Cuál es el principal riesgo de los motociclistas para el conductor?", "Pueden quedar en el punto ciego", "Son fáciles de ver", "Nunca están cerca", "No se desplazan entre vehículos", "Hay que mirar bien antes de cambiar de pista."],
+  [5, "Para proteger a un niño en el auto:", "Usas la retención adecuada a su edad, talla y peso", "Lo llevas sin retención si el viaje es corto", "Lo llevas en brazos", "Lo llevas adelante", "Un viaje corto igual puede terminar en un siniestro."],
+  [5, "Un adulto en brazos con un niño en el auto:", "No protege al niño en un choque", "Es seguro", "Es obligatorio", "Reemplaza la retención", "La fuerza del impacto es imposible de sostener con los brazos."],
+  [5, "Al abrir la puerta del auto estacionado:", "Miras por el espejo y el costado", "La abres rápido", "Avisas con la bocina", "Solo la abres si hay luz verde", "Puede venir un ciclista o moto."],
+  [5, "Los pasos peatonales deben mantenerse:", "Libres, sin vehículos detenidos encima", "Ocupados por estacionados", "Para estacionar en poco tiempo", "Cubiertos", "Estacionar sobre ellos está prohibido."],
+  [5, "¿Qué hace más seguro el entorno para usuarios vulnerables?", "Menor velocidad y mayor atención del conductor", "Mayor velocidad", "Más bocinas", "Menos señales", "A menor velocidad, menor gravedad de los choques."],
+  [6, "Velocidad máxima general en zona urbana:", "50 km/h", "60 km/h", "40 km/h", "70 km/h", "Salvo que una señal indique un límite menor o distinto.", 1],
+  [6, "Velocidad máxima general en una ruta rural con una pista por sentido:", "100 km/h", "80 km/h", "120 km/h", "90 km/h", "Con dos o más pistas por sentido sube a 120 km/h.", 1],
+  [6, "Velocidad máxima general en autopista, sin otra señal:", "120 km/h", "100 km/h", "110 km/h", "140 km/h", "Siempre manda la señal del tramo.", 1],
+  [6, "Una señal octogonal roja con PARE obliga a:", "Detenerte por completo y ceder el paso", "Reducir y seguir", "Tocar la bocina y pasar", "Detenerte solo si hay peatones", "Total detención antes de continuar."],
+  [6, "El triángulo invertido con borde rojo significa:", "Ceda el paso", "Pare", "Prohibido adelantar", "Curva peligrosa", "Reduce y da prioridad a la vía preferente."],
+  [6, "Semáforo en amarillo fijo:", "Precaución: detente si puedes hacerlo con seguridad", "Acelera", "Es igual al verde", "Es igual al Pare", "Avisa que viene el rojo."],
+  [6, "Una luz roja intermitente equivale a:", "Una señal de Pare", "Ceda el paso", "Puedes pasar sin precaución", "El semáforo cambiará a verde", "Detención total y avance solo si es seguro."],
+  [6, "Una flecha verde permite:", "Avanzar solo en la dirección de la flecha", "Avanzar en cualquier dirección", "Detenerte", "Girar sin ceder a peatones", "Autoriza únicamente ese movimiento."],
+  [6, "En una rotonda, tiene preferencia:", "Quien ya circula dentro", "Quien quiere entrar", "El más grande", "El más rápido", "Quien entra debe ceder el paso."],
+  [6, "El adelantamiento normal se hace por:", "La izquierda", "La derecha", "La berma", "Cualquier lado", "Con visibilidad y espacio libre."],
+  [6, "Está prohibido adelantar en:", "Curvas, cimas y cruces", "Rectas largas con visibilidad", "Autopistas de día", "Caminos despejados", "No ves si viene tránsito en sentido contrario."],
+  [6, "Una línea central continua significa:", "No adelantar ni cruzar esa línea", "Puedes adelantar si no viene nadie", "Solo se prohíbe a camiones", "Solo aplica de noche", "Prohíbe adelantar y cruzar al otro sentido."],
+  [6, "El intermitente se usa:", "Con anticipación, antes de iniciar la maniobra", "Mientras ya giras", "Solo de noche", "Nunca si la calle está vacía", "Avisa tu intención a los demás."],
+  [6, "El uso del cinturón es obligatorio para:", "Todos los ocupantes", "Solo el conductor", "Solo quienes van adelante", "Solo en carretera", "Rige adelante y atrás."],
+  [6, "En caminos fuera de la ciudad, las luces bajas deben estar:", "Encendidas también de día", "Apagadas de día", "Solo las de posición", "Con luces altas", "Mejoran tu visibilidad ante otros."],
+  [6, "Al cruzarte con otro vehículo de noche:", "Cambias a luces bajas", "Mantienes luces altas", "Apagas todas las luces", "Usas solo balizas", "Las altas encandilan."],
+  [6, "Si se acerca una ambulancia con sirena:", "Despejas la vía y cedes el paso", "Aceleras", "La sigues", "La ignoras", "Tienen preferencia."],
+  [6, "Un cruce de ferrocarril con barreras bajando:", "Detenerte y no cruzar", "Cruzar rápido", "Rodear la barrera", "Cruzar si no ves el tren", "El tren no puede frenar a tiempo."],
+  [6, "Si estás bajo el límite de velocidad pero llueve o hay niebla:", "Reduces: el límite es un máximo, no una velocidad segura", "Mantienes la velocidad", "Aceleras", "No cambia nada", "Adapta la velocidad a las condiciones."],
+  [7, "Con lluvia intensa debes:", "Reducir la velocidad, aumentar la distancia y usar luces bajas", "Mantener la velocidad y usar luces altas", "Reducir la distancia para ver mejor", "Frenar siempre a fondo", "El pavimento mojado alarga la distancia de frenado."],
+  [7, "Si sufres hidroplaneo:", "Sueltas el acelerador y mantienes el volante firme", "Frenas a fondo", "Giras bruscamente", "Aceleras", "Los neumáticos flotan sobre el agua; los movimientos bruscos empeoran la pérdida de control."],
+  [7, "En niebla densa debes usar:", "Luces bajas (y antiniebla si las tienes)", "Luces altas", "Solo luces de posición", "Ninguna", "Las altas rebotan en la niebla y reducen tu visibilidad."],
+  [7, "Si te encandila otro vehículo:", "Miras el borde derecho de la calzada y reduces la velocidad", "Miras sus luces", "Cierras los ojos", "Aceleras", "Mantienes la referencia sin recibir la luz directa."],
+  [7, "Si revienta un neumático:", "Sujetas el volante firme y reduces sin frenar bruscamente", "Frenas a fondo", "Giras bruscamente", "Aceleras", "El frenado brusco puede hacerte perder el control."],
+  [7, "En una bajada larga conviene:", "Usar el freno motor con una marcha adecuada", "Ir en punto muerto", "Frenar continuamente", "Apagar el motor", "Frenar sin parar puede sobrecalentar los frenos."],
+  [7, "Con viento lateral fuerte:", "Sujetas el volante con firmeza y reduces la velocidad", "Aceleras", "Sueltas el volante", "Frenas de golpe", "El viento puede desviar el vehículo."],
+  [7, "Si fallan los frenos:", "Usas el freno motor, el freno de mano con progresión y buscas una salida segura", "Apagas el motor y el volante", "Aceleras", "Te detienes en medio de la vía", "Intenta reducir la velocidad de forma controlada."],
+  [7, "La sigla PAS en un siniestro significa:", "Proteger, Avisar, Socorrer", "Pasar, Avanzar, Salir", "Parar, Avisar, Seguir", "Pedir, Ayudar, Salir", "Es el orden básico de acción ante un siniestro."],
+  [7, "\"Proteger\" significa:", "Señalizar el lugar para evitar nuevos siniestros", "Mover a los heridos", "Retirarse", "Sacar fotos", "Se usan balizas y triángulos."],
+  [7, "\"Avisar\" significa:", "Llamar a los servicios de emergencia", "Avisar a un familiar solamente", "Llamar a un amigo", "Publicar en redes", "Carabineros 133, ambulancia 131 y Bomberos 132."],
+  [7, "\"Socorrer\" implica:", "Prestar ayuda sin exponerte a riesgos innecesarios", "Mover siempre a los heridos", "Dar de beber al herido", "Abandonar el lugar", "No se debe mover a un herido grave salvo peligro inminente."],
+  [7, "Un herido grave y consciente:", "Se mantiene inmóvil y se espera ayuda, salvo peligro inminente", "Se saca del auto siempre", "Se debe dejar de inmediato", "Se levanta para que camine", "Moverlo puede agravar lesiones."],
+  [7, "Ante un principio de incendio en el auto:", "Te alejas y llamas a emergencia; usas extintor solo si es seguro", "Abres el capó de inmediato", "Echas agua al motor", "Sigues conduciendo", "La prioridad es tu seguridad y la de los ocupantes."],
+  [7, "Si debes detenerte en la calzada por una avería:", "Usas balizas y pones los triángulos detrás del vehículo", "No señalizas", "Pones solo los intermitentes", "Pones los triángulos delante", "Advierte a quienes vienen detrás."],
+  [7, "En un túnel debes:", "Encender las luces y mantener la distancia", "Apagar las luces", "Adelantar", "Detenerte", "La visibilidad y el espacio son limitados."],
+  [7, "Sobre hielo o nieve:", "Conduces suave, con distancia y, si corresponde, con cadenas", "Aceleras fuerte", "Frenas fuerte", "Usas luces altas", "La adherencia es mínima."],
+  [7, "Si te sorprende una neblina densa en la ruta:", "Reduces la velocidad y buscas un lugar seguro fuera de la vía", "Te detienes en la calzada", "Aceleras", "Sigues a otro vehículo muy cerca", "Detenerte en la calzada es peligroso."],
+  [7, "Con luz solar directa en el parabrisas:", "Usas el parasol o lentes de sol y reduces la velocidad", "Aceleras", "Frenas de golpe", "Cierras los ojos", "Evitas el encandilamiento."],
+  [7, "Una larga fila de tránsito detenido en carretera:", "Mantienes distancia y usas balizas para advertir al que viene atrás", "Te acercas lo más posible", "Sigues a alta velocidad", "Cambias de pista varias veces", "Hay riesgo de choques por alcance."],
+  [7, "Ante un siniestro grave, ¿qué NO se debe hacer?", "Huir del lugar sin prestar auxilio", "Señalizar", "Llamar a emergencia", "Cooperar con las autoridades", "Es una infracción grave y puede ser delito."],
+  [8, "Un portaequipaje en el techo cargado:", "Aumenta la resistencia al aire y el consumo", "Reduce la resistencia al aire", "Mejora la aerodinámica", "No influye", "Retíralo si no lo usas."],
+  [8, "Al ver un semáforo en rojo a lo lejos, lo eficiente es:", "Soltar el acelerador y dejar rodar", "Acelerar y frenar fuerte", "Ir en punto muerto", "Cambiar a marcha baja", "Ahorras combustible y frenas con suavidad."],
+  [8, "La mantención al día del motor:", "Reduce el consumo y las emisiones", "No influye", "Aumenta el consumo", "Solo sirve para el seguro", "Un motor en buen estado funciona con más eficiencia."],
+  [8, "Si vas a estar detenido un tiempo largo:", "Apagas el motor", "Dejas el motor acelerado", "Subes el aire acondicionado", "Mantienes el ralentí", "El ralentí prolongado gasta combustible sin avanzar."],
+  [8, "El uso excesivo del aire acondicionado:", "Aumenta el consumo", "Lo reduce", "No influye", "Mejora el rendimiento", "Exige más al motor."],
+  [8, "Ventanillas abiertas a alta velocidad:", "Aumentan la resistencia al aire", "Reducen el consumo", "No influyen", "Mejoran la aerodinámica", "A mayor velocidad, mayor efecto."],
+  [8, "Planificar la ruta antes de salir sirve para:", "Evitar recorridos innecesarios y ahorrar combustible", "Aumentar el tráfico", "Perder tiempo", "Aumentar la velocidad", "Menos kilómetros significan menos consumo."],
+  [8, "Los cambios de marcha eficientes se hacen:", "A régimen de revoluciones moderado", "Con revoluciones altas", "A la velocidad máxima", "Al azar", "Evita sobreexigir el motor."],
+  [8, "Un vehículo eléctrico:", "No emite gases por el escape", "Emite gases por el escape", "No necesita mantención", "Es silencioso para todos los usuarios, sin riesgo", "Su ventaja es la menor contaminación local."],
+  [8, "El frenado regenerativo de un vehículo eléctrico:", "Recupera parte de la energía al frenar", "Consume más energía", "Aumenta el desgaste de neumáticos", "No existe", "Ayuda a aumentar la autonomía."],
+  [8, "Los vehículos eléctricos silenciosos exigen:", "Mayor atención a peatones y ciclistas, porque no se oyen", "Menos atención a peatones", "Mayor velocidad", "No usar luces", "El silencio puede impedir que otros los detecten."],
+  [8, "Una conducción agresiva:", "Aumenta el consumo y el riesgo de siniestro", "Ahorra tiempo siempre", "Reduce el consumo", "Es más segura", "Gasta más y reduce el margen de seguridad."],
+  [8, "La conducción eficiente beneficia:", "Al bolsillo, al medio ambiente y a la seguridad", "Solo al bolsillo", "Solo al medio ambiente", "Solo al conductor", "Es un beneficio económico, ambiental y de seguridad."],
+  [8, "Los neumáticos con presión baja:", "Aumentan el consumo y el desgaste", "Reducen el consumo", "Mejoran el agarre", "No cambian nada", "Hay más resistencia al rodamiento."],
+  [8, "El filtro de aire sucio:", "Aumenta el consumo", "Mejora el rendimiento", "No influye", "Reduce las emisiones", "El motor respira peor."],
+  [8, "Frenar con anticipación:", "Ayuda a ahorrar combustible y a mantener el control", "Aumenta el desgaste de frenos", "Aumenta el consumo", "No ayuda", "Se evitan frenadas bruscas."],
+  [8, "Usar el freno motor en bajadas:", "Ayuda a frenar y, en muchos vehículos, reduce el consumo", "Aumenta el consumo", "Daña el motor", "No ayuda", "Se aprovecha la inercia del vehículo."],
+  [8, "¿Qué conviene hacer antes de un viaje largo?", "Revisar presión de neumáticos y niveles", "Cargar el auto al máximo", "Retirar el cinturón", "Aumentar la presión por sobre lo recomendado", "Mejora la seguridad y el consumo."],
+  [9, "¿Qué edad mínima se exige para licencia clase B?", "18 años", "16 años", "15 años", "21 años", "La licencia no profesional clase B se obtiene desde los 18 años."],
+  [9, "¿Cuántas preguntas del examen valen doble?", "Tres", "Ninguna", "Cinco", "Todas", "Por eso el puntaje total es 38."],
+  [9, "Para obtener licencia clase B, además del teórico, se rinde:", "Examen práctico y evaluación médica", "Solo un test de velocidad", "Solo un examen oral", "Ninguno más", "Se evalúan conocimientos, habilidades y aptitud física."],
+  [9, "La licencia clase B habilita para conducir:", "Automóviles y camionetas de uso particular", "Motos únicamente", "Camiones pesados", "Buses", "Revisa en tu libro el detalle de peso máximo permitido."],
+  [9, "El SOAP:", "Cubre lesiones a ocupantes y terceros por siniestros de tránsito", "Cubre daños al vehículo", "Es opcional", "Solo cubre al conductor", "Es obligatorio para circular."],
+  [9, "Al conducir debes tener al día:", "Licencia, permiso de circulación, SOAP y revisión técnica", "Solo la licencia", "Solo el permiso", "Ninguno si el auto es nuevo", "Son requisitos del conductor y del vehículo."],
+  [9, "Si cambias de domicilio:", "Informas el cambio para mantener tus datos al día", "No haces nada", "Esperas la renovación", "Cambias solo la placa", "Las notificaciones llegan al domicilio registrado."],
+  [9, "Si pierdes tu licencia:", "Tramitas un duplicado", "Conduces igual", "Usas una fotocopia", "Esperas a la renovación", "Debes tramitarlo antes de volver a conducir."],
+  [9, "Conducir sin licencia:", "Es una infracción grave", "Es una falta menor", "Se permite en ciudad", "Se permite con acompañante", "Es una infracción con sanciones."],
+  [9, "Las infracciones se clasifican en:", "Leves, menos graves, graves y gravísimas", "Una sola categoría", "Solo leves", "Solo graves", "Según su gravedad varían las sanciones."],
+  [9, "El principal objetivo de la Ley de Tránsito es:", "Ordenar el tránsito y proteger la vida", "Recaudar multas", "Entorpecer el tránsito", "Favorecer solo a conductores", "Busca prevenir siniestros."],
+  [9, "¿Qué institución elabora el Libro del Nuevo Conductor?", "CONASET", "La Municipalidad", "Una empresa privada", "El Poder Judicial", "Es la Comisión Nacional de Seguridad de Tránsito."],
+  [9, "Si te detiene Carabineros:", "Cooperas y presentas tus documentos", "Escapas", "Discutes", "Te niegas a mostrarlos", "Debes cooperar con la autoridad."],
+  [9, "Para el examen práctico se necesita:", "Un vehículo que cumpla los requisitos de la clase", "Cualquier vehículo", "No necesitas vehículo", "Solo un casco", "Debe estar en buenas condiciones y con documentos al día."],
+  [9, "Durante el examen, ¿se pueden usar apuntes?", "No", "Sí", "Solo en el práctico", "Solo con permiso", "Hacerlo puede invalidar tu evaluación."],
+  [9, "El tiempo para el examen teórico es de:", "45 minutos", "30 minutos", "60 minutos", "90 minutos", "Administra bien tu tiempo."],
+  [9, "Si repruebas el teórico:", "Puedes volver a rendir cumpliendo los plazos", "Quedas inhabilitado para siempre", "No puedes volver", "Debes pagar una multa", "Revisa en tu municipalidad los plazos vigentes."],
+  [9, "Si vendes tu auto:", "Debes hacer la transferencia", "No haces nada", "Solo entregas las llaves", "Entregas la placa", "Así dejas de ser el responsable."],
+  [9, "¿Dónde se informan los requisitos vigentes de licencias?", "En la municipalidad y en fuentes oficiales", "Redes sociales", "Un amigo", "Un grupo de chat", "Los requisitos pueden actualizarse."],
+  /* ---- Lote 4 ---- */
+  [6, "Una señal circular con borde rojo y una diagonal roja sobre un símbolo indica:", "Que lo representado está prohibido", "Que lo representado es obligatorio", "Un peligro adelante", "Un servicio disponible", "La diagonal roja prohíbe la acción que muestra el símbolo."],
+  [6, "Luz verde fija en un semáforo significa:", "Puedes avanzar si el cruce está despejado, cediendo el paso a los peatones", "Debes acelerar", "Debes detenerte", "Tienes preferencia absoluta sobre todos", "El verde autoriza el paso, pero no exime de precaución."],
+  [6, "Cambiar de pista sin señalizar:", "Es una infracción y un riesgo para los demás", "Es correcto si la vía está vacía", "Solo es falta de noche", "No tiene sanción", "Avisar con anticipación es parte de las normas de circulación."],
+  [6, "Si otro vehículo te está adelantando, debes:", "Mantener o reducir la velocidad y facilitar la maniobra", "Acelerar", "Cerrarle el paso", "Tocar la bocina", "Aumentar la velocidad vuelve el adelantamiento más peligroso."],
+  [6, "Al estacionar en una pendiente debes:", "Poner el freno de mano y dejar una marcha engranada", "Dejar el auto en punto muerto", "No usar el freno de mano", "Dejar las ruedas rectas", "Así evitas que el vehículo se mueva solo."],
+  [6, "¿Puedes detener el auto en la berma de una autopista para conversar?", "No, solo en caso de emergencia", "Sí, por poco tiempo", "Sí, con balizas", "Sí, de noche", "Detenerse ahí es muy peligroso por la alta velocidad."],
+  [7, "En un camino con gravilla suelta debes:", "Reducir la velocidad y evitar frenadas y giros bruscos", "Frenar fuerte", "Acelerar", "Girar rápido", "La gravilla reduce el agarre de los neumáticos."],
+  [7, "Si aparece un animal en la ruta:", "Reduces la velocidad y evitas giros bruscos", "Giras de golpe", "Aceleras", "Apagas las luces", "Un volantazo puede causar un siniestro peor."],
+  [7, "En una zona de obras debes:", "Respetar la señalización temporal y reducir la velocidad", "Ignorar las señales", "Acelerar", "Adelantar siempre", "Hay personas trabajando cerca de la calzada."],
+  [8, "En carretera, a mayor velocidad el consumo de combustible:", "Aumenta", "Disminuye", "No cambia", "Se vuelve cero", "La resistencia del aire crece con la velocidad."],
+  [2, "Antes de adelantar necesitas:", "Visibilidad suficiente y espacio libre para volver a tu pista", "Solo apurarte", "Luces altas", "Tocar la bocina", "Debes poder terminar la maniobra con seguridad."],
+  [3, "Si un peatón cruza fuera de un cruce marcado, el conductor debe:", "Conducir con precaución y evitar ponerlo en riesgo", "Acelerar", "Tocarle la bocina", "Ignorarlo", "El conductor debe evitar poner en peligro a los peatones."],
+  [4, "Los efectos del alcohol son mayores si:", "Se bebe con el estómago vacío o con cansancio", "Se toma café después", "Se come después", "Se espera 5 minutos", "El ayuno y el cansancio aumentan sus efectos."],
+  [1, "Un siniestro entre dos vehículos genera costos para:", "Víctimas, familias, el sistema de salud y la sociedad", "Solo los conductores", "Solo las aseguradoras", "Nadie más", "Los efectos alcanzan a toda la sociedad."],
+  [5, "Un niño de 10 años que ya no usa sistema de retención debe viajar:", "En el asiento trasero con cinturón de seguridad", "Adelante sin cinturón", "En brazos de un adulto", "De pie", "Los menores de 12 años van atrás, con cinturón."],
+  /* ---- Lote 5: leído del libro oficial (caps. 1 a 4) ---- */
+  [1, "¿Cómo define el libro la palabra \"accidente\"?", "Suceso eventual del que involuntariamente resulta un daño", "Un hecho siempre causado por un conductor", "Un choque con víctimas fatales", "Un daño material sin lesionados", "Se asocia a algo casual e impredecible; por eso se usa \"siniestro\"."],
+  [1, "Según el libro, ¿cuántas personas mueren cada día en el mundo por siniestros de tránsito?", "Más de 3.000", "Cerca de 300", "Unas 30.000", "Menos de 100", "La OMS lo considera un problema prioritario de salud pública."],
+  [1, "En Chile, los siniestros son la primera causa de muerte en la población de:", "1 a 14 años", "15 a 29 años", "30 a 59 años", "Mayores de 60 años", "En los de 15 a 29 años son la segunda causa, tras los suicidios."],
+  [1, "Por cada persona fallecida en un siniestro, ¿a cuántas cercanas afecta el dolor, en promedio?", "Unas 100", "Unas 5", "Unas 20", "Ninguna", "Es una estimación citada por el libro."],
+  [1, "La rehabilitación y el traslado en ambulancia son costos:", "De salud", "Materiales", "Administrativos", "Humanos", "El libro los agrupa como costos de salud."],
+  [1, "La gestión de seguros y la labor de jueces y abogados son costos:", "Administrativos", "De salud", "Materiales", "Humanos", "Son costos administrativos de los siniestros."],
+  [1, "Aproximadamente, ¿cuántos siniestros se registran al año en Chile?", "Más de 82.000", "Cerca de 8.000", "Cerca de 820.000", "Unos 2.000", "Con cerca de 1.600 fallecidos al año."],
+  [1, "¿Cuántas personas fallecen en promedio por día en las vías de Chile?", "Entre 4 y 5", "Entre 1 y 2", "Entre 15 y 20", "Más de 50", "Equivale a unas 1.600 al año."],
+  [1, "¿Dónde se registra la mayor cantidad de fallecidos por siniestros?", "En vías interurbanas (fuera de la ciudad)", "En vías urbanas", "En estacionamientos", "Solo en autopistas", "En cambio, cerca del 80% de los siniestros ocurre en zonas urbanas."],
+  [1, "¿Qué porcentaje de los siniestros ocurre en zonas urbanas?", "Cerca del 80%", "Cerca del 20%", "Cerca del 50%", "Cerca del 5%", "La mayoría se registra en los cruces de calles."],
+  [1, "Si un peatón es atropellado, ¿qué pasa al subir la velocidad del vehículo de 30 a 50 km/h?", "La probabilidad de que muera se multiplica por ocho", "Se duplica", "Se mantiene", "Baja a la mitad", "Con 30 km/h o menos, el 90% sobrevive.", 1],
+  [1, "¿Qué porcentaje de los siniestros tiene falla humana, según el libro?", "Más del 90%", "Cerca del 10%", "Cerca del 50%", "Menos del 5%", "Por eso la prevención depende de las personas."],
+  [1, "¿Qué grupo de edad aparece más entre los conductores fallecidos?", "Jóvenes de 18 a 29 años", "Mayores de 70 años", "Niños", "Personas de 40 a 50 años", "Representan cerca del 29% de los conductores fallecidos."],
+  [1, "¿Cuáles son factores de mayor incidencia en los siniestros?", "Imprudencia, alcohol y desobediencia a las señales", "Solo el clima", "Solo el color del vehículo", "Solo la edad del auto", "Son conductas evitables."],
+  [1, "Desde 2017, la política de seguridad de tránsito en Chile se alinea con el enfoque de:", "Sistema Seguro (Visión Cero)", "Máxima velocidad", "Sanción total", "Libre circulación", "Establece que las muertes y lesiones graves son inaceptables."],
+  [1, "Un principio del Sistema Seguro es que:", "El cuerpo humano tiene capacidad limitada para soportar un impacto", "Los errores humanos no existen", "Solo el conductor es responsable", "Las vías no influyen", "También: errar es humano y la responsabilidad es compartida."],
+  [2, "En el panel de instrumentos, un testigo rojo indica:", "Atención inmediata: avería grave", "Que un sistema funciona", "Un posible problema a revisar", "Nada importante", "Verde: funcionamiento; amarillo o ámbar: posible problema."],
+  [2, "Si se enciende la luz de presión de aceite, debes:", "Detener el motor de inmediato", "Seguir hasta llegar", "Acelerar", "Apagar las luces", "Seguir conduciendo puede causar averías graves."],
+  [2, "Si un accesorio eléctrico deja de funcionar, lo primero es revisar:", "Los fusibles", "El motor", "Los neumáticos", "El escape", "Los fusibles evitan incendios y daños eléctricos."],
+  [2, "Si sientes fuerte olor a gasolina al conducir:", "Te detienes a investigar la causa", "Subes la ventilación y sigues", "Aceleras", "Enciendes un cigarrillo", "Así previenes el riesgo de incendio."],
+  [2, "El monóxido de carbono del escape es:", "Venenoso, incoloro e inoloro", "Visible y de mal olor", "Inofensivo", "Solo tóxico en invierno", "Ante dolor de cabeza o vómitos, sal y respira aire fresco."],
+  [2, "El servofreno funciona:", "Solo con el motor en marcha", "Siempre", "Solo con el freno de mano", "Solo en bajada", "Cuidado al ser remolcado o si el motor se apaga en una bajada."],
+  [2, "La profundidad mínima aconsejable de los surcos del neumático es:", "3 mm (nunca menos de 1,6 mm)", "10 mm", "0,5 mm", "No importa", "Bajo 1,6 mm empeora el agarre en pavimento mojado."],
+  [2, "Los neumáticos deben cambiarse al menos cada:", "5 años", "15 años", "1 año", "20 años", "Aunque tengan poco uso, el material envejece."],
+  [2, "La presión de los neumáticos se controla:", "Con los neumáticos fríos", "Con los neumáticos calientes", "Solo en verano", "Nunca", "Si se ajusta caliente, queda menor a la adecuada."],
+  [2, "Si revienta un neumático delantero, debes:", "Frenar suavemente y sujetar firme el volante", "Frenar a fondo", "Acelerar", "Soltar el volante", "Luego te detienes lentamente al costado de la vía."],
+  [2, "Las luces neblineras se usan:", "Solo con visibilidad muy reducida (niebla o lluvia torrencial)", "Siempre", "Solo de día", "Para estacionar", "Se apagan apenas mejora la visibilidad."],
+  [2, "Un tiempo normal de reacción es de:", "Un segundo", "Un minuto", "Una décima de segundo", "Cinco segundos", "A 72 km/h, en ese segundo recorres 20 metros."],
+  [2, "Para estimar la distancia de reacción a 50 km/h puedes:", "Multiplicar por 3 la primera cifra (15 m)", "Dividir por 2", "Multiplicar por 10", "Sumar 50", "Vale hasta 99 km/h; desde 100 se usan los dos primeros dígitos."],
+  [2, "Si triplicas la velocidad, la distancia de frenado aumenta:", "9 veces", "3 veces", "6 veces", "No cambia", "Crece al cuadrado de la velocidad.", 1],
+  [2, "En una bajada pronunciada, debes:", "Usar una marcha baja y nunca desenganchar el motor", "Ir en punto muerto", "Frenar siempre a fondo", "Apagar el motor", "Así el motor ayuda a frenar y los frenos no se calientan."],
+  [2, "Un choque a 50 km/h sin cinturón equivale a caer desde:", "Un cuarto piso", "Una silla", "Un primer piso", "Un piso 20", "A 90 km/h equivale al piso 11."],
+  [2, "El airbag es eficaz solo si se usa junto con:", "El cinturón de seguridad", "Luces altas", "Neumáticos nuevos", "El freno de mano", "Sin cinturón puede causar graves lesiones al inflarse."],
+  [2, "La separación máxima entre la cabeza y el apoyacabezas es:", "4 cm", "15 cm", "30 cm", "No importa", "El apoyacabezas previene el efecto latigazo."],
+  [3, "La Educación Vial busca inculcar valores como:", "Respeto, solidaridad, comprensión, perdón y tolerancia", "Competitividad y rapidez", "Solo obediencia a Carabineros", "Velocidad y destreza", "También incluye las normas y el conocimiento de las señales."],
+  [3, "La meta de la Seguridad Vial es:", "Eliminar totalmente los siniestros de tránsito", "Reducir las multas", "Aumentar la velocidad", "Mejorar solo el tráfico", "Se parte reduciéndolos y minimizando sus consecuencias."],
+  [3, "La percepción del riesgo de la mayoría de los conductores suele estar:", "Por debajo del riesgo real", "Por sobre el riesgo real", "Igual al real", "Es siempre exacta", "Por eso se subestiman los peligros."],
+  [3, "¿Cuál es el mayor riesgo al conducir, según el libro?", "La imprudencia y la falta de práctica", "El color del auto", "La edad del vehículo", "El tamaño de la ciudad", "Hay que eliminar la idea de que los siniestros \"solo le ocurren a los demás\"."],
+  [3, "Cerca del 90% de los siniestros con víctimas se debe a:", "Fallas humanas", "Fallas del vehículo", "Mal tiempo", "Mala suerte", "Errores de conductores con una equivocada percepción del riesgo."],
+  [3, "El principio de confianza en el tránsito significa:", "Esperar que cada usuario cumpla su rol y las normas", "Confiar en que nadie cometerá errores", "Que no hace falta mirar", "Que la luz roja es opcional", "Pasarse una luz roja debilita ese principio."],
+  [3, "La velocidad inadecuada está presente en:", "La cuarta parte de los siniestros con víctimas", "Menos del 1%", "Todos los siniestros", "La mitad exacta", "Es uno de los principales factores de riesgo."],
+  [3, "El principio fundamental en la conducción es:", "La precaución", "La rapidez", "La competencia", "La confianza ciega", "Se practica con conducción defensiva y preventiva."],
+  [3, "La conducción defensiva implica:", "No dar por hecho que los demás te vieron", "Confiar en que todos respetan las normas", "Ir pegado al de adelante", "Evitar los espejos", "Además, mantén distancia suficiente y prudente."],
+  [3, "¿Cuál es la mejor virtud al conducir en el entorno vial?", "La solidaridad", "La rapidez", "El orgullo", "La competitividad", "Ceder el paso y dejar espacio para que te adelanten."],
+  [3, "Para conducir con seguridad debes ir a una velocidad que:", "Te permita mantener el control y reaccionar a tiempo", "Sea la más alta permitida", "No te haga mirar los espejos", "Solo sea segura de día", "Tu prisa no debe poner en riesgo a nadie."],
+  [3, "Respecto de conducir con molestia o angustia, el libro indica:", "Debes conducir solo en buenas condiciones físicas y mentales", "Mejora la concentración", "No tiene efecto", "Es recomendable", "El estado emocional influye en la conducción."],
+  [3, "No respetar una luz roja o un paso peatonal señalizado:", "Es una infracción y atenta contra la convivencia vial", "Es una conducta aceptable", "No tiene consecuencias", "Solo afecta a los peatones", "Pone en riesgo a quien conduce y a los demás."],
+  [3, "El Entorno Vial es:", "Un espacio de convivencia social donde las personas son el tránsito", "Solo las calles", "Solo los vehículos", "Solo las señales", "Son las vías, los vehículos y las personas que los usan."],
+  [3, "Cuando conduces, debes asegurarte de que quienes te acompañan:", "También usen el cinturón de seguridad", "Se sienten sin cinturón", "Abran las ventanas", "Conduzcan por turnos", "Es una de las claves de convivencia vial."],
+  [3, "Al conducir debes adaptarte a:", "Las condiciones climáticas, ambientales y del pavimento", "Solo a la velocidad máxima", "Solo al tráfico", "Solo a las señales", "Concéntrate solo en la conducción."],
+  [4, "Los conductores principiantes sufren siniestros sin otros vehículos con una frecuencia:", "10 veces mayor que los experimentados", "Igual", "Menor", "2 veces menor", "La experiencia se adquiere con horas al volante."],
+  [4, "Respecto del tiempo de reacción, el libro indica que:", "En situaciones complejas los conductores expertos reaccionan mejor", "Los jóvenes siempre reaccionan más rápido", "Es igual para todos", "Nunca cambia", "El grupo más rápido tiene entre 35 y 50 años."],
+  [4, "Tras mirar directamente los focos de un vehículo, la distancia de visibilidad temporal es de:", "0 metros", "15 metros", "70 metros", "100 metros", "La ceguera temporal es larga y muy riesgosa."],
+  [4, "En el cruce de vehículos con luces bajas, la visibilidad no supera:", "15 a 20 metros", "70 metros", "200 metros", "1 kilómetro", "Sin cruce, se ven las demarcaciones hasta unos 70 m."],
+  [4, "¿Qué porcentaje de la luz refleja la ropa oscura?", "5%", "50%", "80%", "98%", "La blanca refleja 80% y los materiales reflectantes entre 90 y 98%."],
+  [4, "La percepción selectiva significa que:", "Descubrimos lo que esperamos ver", "Vemos todo con igual atención", "Solo vemos de día", "No depende de la persona", "Lo que no se espera ver tarda más en descubrirse."],
+  [4, "La visión de túnel significa que, a mayor velocidad:", "El campo visual se reduce", "El campo visual se amplía", "Se ve mejor a los lados", "Mejora la atención", "También aparece cuando hay estrés."],
+  [4, "Subestimar la velocidad es riesgoso porque:", "Puedes equivocarte al juzgar la distancia de frenado", "Mejora la reacción", "Reduce el consumo", "No afecta", "Autos silenciosos y rutas monótonas facilitan no notarla."],
+  [4, "¿Cuál es una conducta de riesgo descrita en el libro?", "La impulsividad (actuar sin pensar)", "La prudencia", "La empatía", "El autocontrol", "También: no asumir la culpa, represión, formación de reacción y validación."],
+  [4, "La Ley Tolerancia Cero se promulgó en:", "2012", "1993", "2017", "2024", "Redujo los niveles permitidos de alcohol."],
+  [4, "Entre 0,31 y 0,79 g/L de alcohol se considera:", "Conducción bajo la influencia del alcohol", "Estado de ebriedad", "Un nivel permitido", "Intoxicación grave", "Sanción: multas y suspensión de licencia.", 1],
+  [4, "Con 0,8 g/L o más, la sanción incluye:", "Multas, cancelación de licencia y presidio", "Solo una amonestación", "Solo una multa", "Nada si es la primera vez", "Es estado de ebriedad.", 1],
+  [4, "La Ley Emilia (2014) sanciona con cárcel efectiva de al menos:", "Un año, si en estado de ebriedad se causa muerte o lesiones gravísimas", "Un mes", "Diez años", "Una multa", "La reincidencia y la licencia cancelada son delitos calificados.", 1],
+  [4, "Con una alcoholemia entre 0,5 y 0,8 g/L, el riesgo de siniestro es:", "Cinco veces mayor", "El doble", "Igual", "La mitad", "Entre 0,3 y 0,5 g/L es el doble.", 1],
+  [4, "La única tasa de alcohol segura para conducir es:", "0", "0,3 g/L", "0,5 g/L", "0,8 g/L", "Si vas a beber, no conduzcas.", 1],
+  [4, "El alcohol en la sangre disminuye aproximadamente:", "0,10 a 0,15 g/L por hora", "1 g/L por hora", "Nada por hora", "0,5 g/L por hora", "No se acelera con café, ducha fría ni ejercicio."],
+  [4, "A igual cantidad de alcohol, alcanza mayor alcoholemia quien tiene:", "Menor peso corporal", "Mayor peso corporal", "Más estatura", "Más edad", "El sexo y el tiempo de ingesta también influyen."],
+  [4, "La marihuana se clasifica como:", "Depresor y alucinógeno (no estimulante)", "Estimulante", "Medicamento", "Vitamina", "Aumenta el tiempo de reacción."]
+];
+QUESTIONS.forEach(q => { q.ch = MAP[q.id]; q.cat = CH[q.ch - 1]; });
+const REMOVE = new Set([165, 108, 124, 122, 123, 142, 111, 209, 207, 212, 220, 222, 259, 208, 211, 214, 218, 134, 147, 149, 167, 171, 174, 114, 185, 224, 242, 261, 198, 318]); /* ids de preguntas repetidas a ocultar */
+NEW.forEach((t, i) => QUESTIONS.push({ id: 11 + i, ch: t[0], cat: CH[t[0] - 1], q: t[1], o: [t[2], t[3], t[4], t[5]], why: t[6], d: t[7] }));
+const FLASH = [[1, "Siniestro", "Suceso de tránsito con causas en su mayoría prevenibles; reemplaza la idea de \"accidente por azar\"."], [1, "Factores concurrentes", "Humano, vehículo y vía/entorno: suelen combinarse en un siniestro."], [1, "Costo económico", "Cerca del 2% del PIB, según la OMS."], [1, "Retención infantil", "Obligatoria hasta los 8 años inclusive, según talla y peso."], [1, "Alcohol (0,3 g/L)", "Desde este nivel ya hay sanción por conducir bajo la influencia del alcohol."], [2, "Distancia de detención", "Distancia de reacción + distancia de frenado."], [2, "Velocidad ×2", "La distancia de frenado se multiplica aproximadamente por 4."], [2, "Inercia", "Tendencia de un cuerpo a seguir en movimiento; explica por qué se necesita el cinturón."], [2, "Punto ciego", "Zona que no ves en los espejos; se revisa girando la cabeza."], [2, "ABS", "Evita que las ruedas se bloqueen: pisa firme y sostenido."], [3, "Convivencia vial", "Compartir la vía respetando el espacio y la prioridad de todos los usuarios."], [3, "1,5 m", "Separación lateral mínima al adelantar a un ciclista."], [3, "Punto ciego", "Zona que los espejos no muestran; revísala antes de cambiar de pista."], [3, "Preferencia peatonal", "En el paso peatonal, el conductor debe detenerse y ceder el paso."], [3, "Bocina", "Solo para evitar un siniestro o advertir un peligro."], [4, "0,3 g/L", "Desde este nivel hay sanción por conducir bajo la influencia del alcohol."], [4, "0,8 g/L", "Desde este nivel se considera estado de ebriedad."], [4, "Ley Emilia", "Endurece las penas por causar muerte o lesiones graves manejando bajo la influencia del alcohol: cárcel efectiva y cancelación de licencia."], [4, "Fatiga", "Aumenta el tiempo de reacción; la solución es parar y descansar."], [4, "Distracción", "Todo lo que aparta la atención de la vía: celular en mano, comer, manipular la radio."], [5, "Usuarios vulnerables", "Peatones, ciclistas y motociclistas: sin carrocería que los proteja."], [5, "Retención infantil", "Obligatoria hasta los 8 años inclusive, según talla y peso, en el asiento trasero."], [5, "Asiento delantero", "Menores de 12 años no deben ir allí (excepto cabina simple)."], [5, "1,5 m", "Separación mínima al adelantar a un ciclista."], [5, "Paso peatonal", "El conductor se detiene y cede el paso; no se estaciona sobre él."], [6, "50 / 100 / 120", "Urbano 50; rural con una pista por sentido 100; rural con 2 o más pistas por sentido y autopista 120 (si no hay señal que indique otro)."], [6, "PARE (octágono)", "Detención total antes de continuar."], [6, "Ceda el paso (triángulo invertido)", "Reducir y dar prioridad a la vía preferente."], [6, "Preferencia en cruce sin señal", "Quien llega por la derecha."], [6, "Rotonda", "Tiene preferencia quien ya circula dentro."], [7, "Hidroplaneo", "Los neumáticos flotan sobre el agua: suelta el acelerador, volante firme, sin frenar a fondo."], [7, "PAS", "Proteger, Avisar, Socorrer."], [7, "Emergencias", "133 Carabineros, 131 ambulancia, 132 Bomberos."], [7, "Niebla", "Luces bajas (y antiniebla); nunca luces altas."], [7, "Avería en calzada", "Balizas y triángulos detrás del vehículo."], [8, "Conducción eficiente", "Conducir de forma suave y anticipada para ahorrar combustible, reducir emisiones y mejorar la seguridad."], [8, "Ralentí", "Motor encendido sin avanzar; si es prolongado, conviene apagarlo."], [8, "Presión de neumáticos", "La recomendada mejora seguridad y reduce el consumo."], [8, "Frenado regenerativo", "En eléctricos, recupera parte de la energía al frenar."], [8, "Resistencia al aire", "Aumenta con ventanas abiertas y portaequipaje en el techo."], [9, "Examen teórico", "35 preguntas, 3 de doble puntaje; se aprueba con 33 de 38 puntos en 45 minutos."], [9, "Edad mínima clase B", "18 años."], [9, "SOAP", "Seguro obligatorio por lesiones a ocupantes y terceros en siniestros."], [9, "Revisión técnica", "Control de seguridad y emisiones del vehículo."], [9, "Permiso de circulación", "Se renueva todos los años."]];
+const CASES = [[1, "Vas por una ruta lluviosa a 100 km/h y el auto de adelante frena de golpe.", "reducir velocidad desde antes y aumentar la distancia. El pavimento mojado alarga el frenado."], [1, "Ves un choque, hay heridos y salen humo y combustible.", "señalizar, llamar a 131/132/133 y mover a los heridos solo si hay peligro inminente (incendio). No irte."], [2, "Vas por una curva cerrada con lluvia y sientes que vas rápido.", "reducir la velocidad antes de la curva, sin frenar bruscamente dentro de ella."], [2, "Un auto frena fuerte frente a ti y estás muy cerca.", "frenar firme y sostenido (con ABS no bombees). La causa fue la poca distancia de seguimiento."], [3, "Vas detrás de un ciclista en una calle angosta con tránsito contrario.", "esperar, no pasar rozando y adelantar solo con 1,5 m de separación cuando sea seguro."], [3, "Estás estacionado y vas a bajar. Sientes que no viene nadie.", "mirar por el espejo y por el costado antes de abrir la puerta, por si viene un ciclista o moto."], [4, "Saliste de un cumpleaños, tomaste dos copas y \"te sientes bien\".", "no manejar. La sensación de estar bien es engañosa y solo el tiempo elimina el alcohol; busca un conductor designado o transporte."], [4, "Llevas 4 horas conduciendo de noche y empiezas a cabecear.", "detenerte en un lugar seguro y descansar. Subir la música o abrir la ventana no resuelven el cansancio."], [5, "Llevas a tu sobrino de 7 años. Dice que quiere ir adelante.", "va atrás con su sistema de retención, porque tiene menos de 8 años y menos de 12."], [5, "Vas de noche y hay un ciclista con poca luz al borde de la calzada.", "reducir la velocidad, adelantar con 1,5 m solo si es seguro y estar atento."], [6, "Llegas a un cruce sin señales y viene un auto por tu derecha.", "cederle el paso."], [6, "En autopista el tramo indica 100 km/h, aunque el límite general es 120.", "obedecer la señal del tramo."], [7, "Vas por carretera, entra neblina y casi no ves el auto de adelante.", "reducir la velocidad, usar luces bajas y buscar un lugar seguro para detenerte fuera de la calzada."], [7, "Presencias un choque con un herido atrapado y sin riesgo de incendio.", "proteger el lugar, llamar a emergencia y no moverlo, esperando ayuda."], [8, "Tu auto consume más de lo normal y llevas un portaequipaje vacío en el techo.", "retirarlo y revisar la presión de neumáticos."], [8, "Ves un semáforo en rojo a 200 m.", "soltar el acelerador y dejar rodar, frenando suavemente al llegar."], [9, "Te detiene Carabineros y no encuentras tu SOAP.", "cooperar, explicar con calma y regularizar. Circular sin SOAP es una infracción."], [9, "Perdiste tu licencia y debes manejar al trabajo mañana.", "tramitar el duplicado antes de conducir. No manejes sin licencia."]];
+const TF = [[1, "Los siniestros son mala suerte.", false, "La mayoría es evitable."], [1, "El factor humano influye en la mayoría.", true, ""], [1, "Con buen auto no hace falta cinturón.", false, "El cinturón reduce el riesgo de lesión grave o muerte."], [1, "Un solo factor causa siempre el siniestro.", false, "Suelen combinarse varios."], [1, "Los siniestros tienen costo solo humano.", false, "También económico y social (cerca del 2% del PIB)."], [2, "Si voy al doble de velocidad, freno al doble de distancia.", false, "Aproximadamente 4 veces."], [2, "Con ABS debo bombear el freno.", false, "Pisa firme y sostenido."], [2, "Los neumáticos son el único contacto con el suelo.", true, ""], [2, "Ajustar los espejos en marcha es aceptable.", false, "Se hace antes de partir."], [2, "Con cansancio aumenta la distancia de reacción.", true, ""], [3, "Los autos tienen prioridad por ser más grandes.", false, ""], [3, "Debo dejar 1,5 m al adelantar a un ciclista.", true, ""], [3, "Puedo usar la bocina para apurar a quien va adelante.", false, ""], [3, "Debo ceder el paso a vehículos de emergencia con sirena.", true, ""], [3, "Responder una agresión en la calle ayuda.", false, "Mantén la calma."], [4, "El café quita la borrachera.", false, "Solo el tiempo."], [4, "Desde 0,3 g/L ya hay sanción.", true, ""], [4, "El manos libres es igual a usar el celular en la mano.", false, "en cuanto a la ley, aunque igual distrae; lo más seguro es no usar el celular."], [4, "Un medicamento puede causar somnolencia y afectar la conducción.", true, ""], [4, "Un conductor con experiencia no tiene riesgo de distraerse.", false, ""], [5, "Un niño puede ir en brazos si el viaje es corto.", false, ""], [5, "Los menores de 12 años van atrás.", true, "(con excepción en cabina simple)."], [5, "El casco es opcional para el motociclista.", false, ""], [5, "Debo ceder el paso al peatón que cruza por el paso peatonal.", true, ""], [5, "Puedo estacionar un momento en la ciclovía.", false, ""], [6, "El límite urbano general es 60 km/h.", false, "Es 50 km/h."], [6, "En un cruce sin señal pasa primero quien viene por la derecha.", true, ""], [6, "El amarillo fijo significa acelerar.", false, ""], [6, "Puedo adelantar en una curva si no veo a nadie.", false, ""], [6, "Puedo bocinar para apurar a otros.", false, ""], [7, "En niebla uso luces altas para ver mejor.", false, ""], [7, "Ante hidroplaneo, freno a fondo.", false, ""], [7, "PAS significa Proteger, Avisar, Socorrer.", true, ""], [7, "Los triángulos van delante del vehículo averiado.", false, "Detrás."], [7, "Huir del lugar de un siniestro es solo una falta menor.", false, ""], [8, "Acelerar fuerte ahorra tiempo y combustible.", false, ""], [8, "Un motor mantenido consume menos.", true, ""], [8, "Los eléctricos no requieren atención con peatones.", false, ""], [8, "El ralentí prolongado es eficiente.", false, ""], [8, "La presión baja en neumáticos aumenta el consumo.", true, ""], [9, "El teórico se aprueba con 20 puntos.", false, "Son 33 de 38."], [9, "Se puede obtener clase B a los 16 años.", false, "Desde los 18."], [9, "El SOAP cubre solo daños al auto.", false, ""], [9, "El permiso de circulación se renueva anualmente.", true, ""], [9, "En el examen se pueden usar apuntes.", false, ""]];
+
+/* ================================================================
+   CONFIGURACIÓN DEL MOTOR (puedes ajustarla)
+   ================================================================ */
+for (let i = QUESTIONS.length - 1; i >= 0; i--) if (REMOVE.has(QUESTIONS[i].id)) QUESTIONS.splice(i, 1);
+const LS_KEY = "examenClaseB_v1";
+const ROUND = 10;                 // preguntas por ronda (se guarda un puntaje al terminar)
+const GAPS = [3, 6, 12, 25, 50];  // en cuántas respuestas vuelve a salir cada "caja" (0 = falló)
+const MASTERED = 3;               // caja desde la cual la pregunta cuenta como dominada
+
+/* ================================================================
+   ESTADO + localStorage
+   ================================================================ */
+function load() {
+  try { const r = JSON.parse(localStorage.getItem(LS_KEY + suf())); if (r && r.cards) return r; } catch (e) {}
+  return { tick: 0, last: null, cards: {}, history: [], round: { n: 0, ok: 0 } };
+}
+function save() { try { localStorage.setItem(LS_KEY + suf(), JSON.stringify(S)); } catch (e) {} push(); }
+/* ============ CUENTAS (opcional) ============
+   Para activar registro e inicio de sesión, pega aquí los datos de tu proyecto de Supabase
+   (ver README.md). Si los dejas vacíos, la app funciona sin cuentas, guardando todo en el dispositivo. */
+const SUPA_URL = "";   // ej: "https://xxxx.supabase.co"
+const SUPA_KEY = "";   // clave pública "anon" (es pública por diseño; la seguridad la dan las políticas RLS)
+let AC = (() => { try { return JSON.parse(localStorage.getItem("ecb_sesion")); } catch (e) { return null; } })();
+const suf = () => AC ? "_" + AC.uid : "";
+let S = load();
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const card = id => S.cards[id] || (S.cards[id] = { box: 0, due: 0, seen: 0, ok: 0, fail: 0 });
+
+function progress() {
+  const m = QUESTIONS.filter(q => S.cards[q.id] && S.cards[q.id].box >= MASTERED).length;
+  return Math.round(m / QUESTIONS.length * 100);
+}
+function totals() {
+  let seen = 0, ok = 0;
+  Object.values(S.cards).forEach(c => { seen += c.seen; ok += c.ok; });
+  return { seen, ok, acc: seen ? Math.round(ok / seen * 100) : 0 };
+}
+
+/* ================================================================
+   MOTOR: Active Recall + Repetición Espaciada (cajas tipo Leitner)
+   - Fallas  -> caja 0 -> vuelve en ~3 respuestas
+   - Aciertos -> suben de caja -> vuelven cada vez más tarde
+   ================================================================ */
+function pick() {
+  const base = QUESTIONS.filter(q => !S.f || q.ch === S.f);
+  let pool = base.filter(q => q.id !== S.last);
+  if (!pool.length) pool = base;
+  const due = pool.filter(q => { const c = S.cards[q.id]; return c && c.seen && c.due <= S.tick; });
+  if (due.length) {
+    const low = Math.min(...due.map(q => S.cards[q.id].box));
+    const set = due.filter(q => S.cards[q.id].box === low);
+    return set[Math.floor(Math.random() * set.length)];
+  }
+  const fresh = pool.filter(q => !S.cards[q.id] || !S.cards[q.id].seen);
+  if (fresh.length) return fresh[Math.floor(Math.random() * fresh.length)];
+  const w = pool.map(q => { const c = card(q.id); return 1 + (4 - c.box) + c.fail; });
+  let r = Math.random() * w.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < pool.length; i++) { r -= w[i]; if (r <= 0) return pool[i]; }
+  return pool[0];
+}
+function shuffle(a) {
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+/* ================================================================
+   VISTAS
+   ================================================================ */
+let cur = null, opts = [], locked = false, view = "home";
+function setNav(v) {
+  view = v;
+  $("#nHome").classList.toggle("on", v === "home");
+  $("#nStats").classList.toggle("on", v === "stats");
+}
+function home() {
+  setNav("home"); SM = null;
+  const p = progress(), t = totals();
+  const resume = S.round.n > 0 ? ` (ronda ${S.round.n}/${ROUND})` : "";
+  app.innerHTML = `
+    <section class="hero">
+      <div class="sign">B</div>
+      <div><h1>Prepara tu examen teórico</h1><p>${AC ? "Hola, " + esc(AC.nombre) : "Licencia Clase B · 9 capítulos del libro"}</p></div>
+    </section>
+    <section class="card">
+      <div class="pct"><span>Preguntas dominadas</span><b>${p}%</b></div>
+      <div class="road"><i style="width:${p}%"></i></div>
+      <div class="grid">
+        <div class="stat"><b>${QUESTIONS.length}</b><span>en el banco</span></div>
+        <div class="stat"><b>${t.seen}</b><span>respondidas</span></div>
+        <div class="stat"><b>${t.acc}%</b><span>de aciertos</span></div>
+      </div>
+    </section>
+    <button class="smart" id="sm"><span class="ic">🧠</span><span><b>Aprendizaje inteligente</b><small>Sesión armada según tus puntos débiles</small></span></button>
+    <label class="lab" for="sel">Capítulo a estudiar</label>
+    <select id="sel">
+      ${["Todos los capítulos"].concat(CH.map((n, i) => `${i + 1}. ${n}`)).map((n, i) => `<option value="${i}"${(S.f || 0) === i ? " selected" : ""}>${esc(n)}</option>`).join("")}
+    </select>
+    <button class="btn" id="go">Estudiar${resume}</button>
+    <h2>Otras formas de estudiar</h2>
+    <div class="tiles">
+      <button class="tile" id="dg"><span class="ic">🎯</span>Test de diagnóstico</button>
+      <button class="tile" id="m1"><span class="ic">🃏</span>Tarjetas de memoria</button>
+      <button class="tile" id="m2"><span class="ic">🚦</span>Casos prácticos</button>
+      <button class="tile" id="m3"><span class="ic">✅</span>Verdadero o falso</button>
+    </div>
+    <p class="note center">Tu avance se guarda en este navegador.</p>`;
+  $("#sel").onchange = e => { S.f = +e.target.value; save(); };
+  $("#go").onclick = quiz; $("#dg").onclick = diagStart; $("#sm").onclick = smartHome; $("#m1").onclick = () => study("f"); $("#m2").onclick = () => study("c"); $("#m3").onclick = () => study("v");
+}
+function quiz() {
+  D = null; M = null; SM = null;
+  setNav("quiz");
+  cur = pick(); locked = false;
+  opts = shuffle(cur.o.map((t, i) => ({ t, ok: i === 0 })));
+  app.innerHTML = `
+    <div class="bar"><i style="width:${S.round.n / ROUND * 100}%"></i></div>
+    <div class="meta"><span class="tag">${esc(cur.cat)}${cur.d ? " · ⭐ Doble" : ""}</span><span>Ronda ${S.round.n + 1}/${ROUND}</span></div>
+    <div class="q">${esc(cur.q)}</div>
+    <div id="opts">${opts.map((o, i) => `<button class="opt" data-i="${i}"><b>${i + 1}.</b> ${esc(o.t)}</button>`).join("")}</div>
+    <div id="fb"></div>`;
+  document.querySelectorAll(".opt").forEach(b => b.onclick = () => answer(+b.dataset.i));
+}
+function answer(i) {
+  if (locked) return; locked = true;
+  const ok = opts[i].ok, c = card(cur.id);
+  S.tick++; c.seen++;
+  if (ok) { c.ok++; c.box = Math.min(c.box + 1, GAPS.length - 1); } else { c.fail++; c.box = 0; }
+  c.due = S.tick + GAPS[c.box];
+  S.round.n++; if (ok) S.round.ok++;
+  S.last = cur.id;
+  save();
+  document.querySelectorAll(".opt").forEach((b, k) => {
+    b.disabled = true;
+    if (opts[k].ok) b.classList.add("good"); else if (k === i) b.classList.add("bad");
+  });
+  const done = S.round.n >= ROUND;
+  $("#fb").innerHTML = `
+    <div class="fb ${ok ? "" : "bad"}">
+      <strong>${ok ? "¡Correcto!" : "Incorrecto"}</strong>
+      ${ok ? "" : "La respuesta correcta es: <b>" + esc(cur.o[0]) + "</b>. "}${esc(cur.why)}
+      ${ok ? "" : "<br><small>Volverá a aparecer pronto.</small>"}
+    </div>
+    <button class="btn" id="nx">${done ? "Ver resultado" : "Siguiente"}</button>`;
+  $("#nx").onclick = done ? endRound : quiz;
+  $("#nx").focus();
+}
+function endRound() {
+  const { n, ok } = S.round;
+  S.history.push({ d: Date.now(), ok, n });
+  S.history = S.history.slice(-30);
+  S.round = { n: 0, ok: 0 };
+  save();
+  const pc = Math.round(ok / n * 100);
+  setNav("home");
+  app.innerHTML = `
+    <div class="center"><p class="meta" style="justify-content:center">Ronda terminada</p>
+      <div class="big">${ok}/${n}</div>
+      <p>${pc >= 80 ? "Buen puntaje. Sigue así." : "Repasa las que fallaste: volverán a salir."}</p></div>
+    <button class="btn" id="go">Otra ronda</button>
+    <button class="btn alt" id="hm">Volver al inicio</button>`;
+  $("#go").onclick = quiz; $("#hm").onclick = home;
+}
+function stats() {
+  setNav("stats");
+  const p = progress(), t = totals();
+  const hist = S.history.slice().reverse().slice(0, 10);
+  const worst = QUESTIONS.filter(q => S.cards[q.id] && S.cards[q.id].fail > 0)
+    .sort((a, b) => S.cards[b.id].fail - S.cards[a.id].fail).slice(0, 5);
+  app.innerHTML = `
+    <section class="plate">
+      <h1>${p}% dominado</h1>
+      <div class="road"><i style="width:${p}%"></i></div>
+      <div class="pct"><span>${t.seen} respuestas</span><span>${t.acc}% de aciertos</span></div>
+    </section>
+    <h2>Por capítulo del libro</h2>
+    ${chRows()}
+    <h2>Historial de rondas</h2>
+    ${hist.length ? hist.map(h => {
+      const pc = Math.round(h.ok / h.n * 100);
+      return `<div class="row"><div class="g">${new Date(h.d).toLocaleDateString("es-CL")}<br><small>${h.ok} de ${h.n}</small></div>
+        <div class="mini"><i style="width:${pc}%"></i></div><b>${pc}%</b></div>`;
+    }).join("") : `<p class="note">Aún no terminas ninguna ronda de ${ROUND} preguntas.</p>`}
+    <h2>Donde más fallas</h2>
+    ${worst.length ? worst.map(q => `<div class="row"><div class="g">${esc(q.q)}<br><small>${esc(q.cat)}</small></div><b>${S.cards[q.id].fail}×</b></div>`).join("")
+      : `<p class="note">Sin fallos registrados por ahora.</p>`}
+    ${acctBox()}
+    <button class="btn" id="go">Estudiar</button>
+    <button class="btn danger" id="rs">Borrar todo mi progreso</button>`;
+  acctBind(); $("#go").onclick = quiz;
+  $("#rs").onclick = () => {
+    if (confirm("¿Borrar todo tu progreso? No se puede deshacer.")) {
+      S = { tick: 0, last: null, cards: {}, history: [], round: { n: 0, ok: 0 } }; save(); home();
+    }
+  };
+}
+
+/* ---------- Progreso por capítulo ---------- */
+function chRows() {
+  const st = CH.map((n, i) => {
+    const qs = QUESTIONS.filter(q => q.ch === i + 1);
+    let s = 0, f = 0, m = 0;
+    qs.forEach(q => { const c = S.cards[q.id]; if (c) { s += c.seen; f += c.fail; if (c.box >= MASTERED) m++; } });
+    return { n, i, s, f, m, t: qs.length, e: s ? Math.round(f / s * 100) : -1 };
+  });
+  const w = Math.max(...st.map(x => x.e));
+  return st.map(x => `<div class="row"><div class="g">${x.i + 1}. ${esc(x.n)}<br>
+    <small>${x.s ? `Fallaste ${x.f} de ${x.s} (${x.e}%)` : "Sin responder"} · ${x.m}/${x.t} dominadas</small></div>
+    <div class="mini"><i style="width:${x.t ? Math.round(x.m / x.t * 100) : 0}%"></i></div>
+    ${x.e === w && w > 0 ? '<b style="color:var(--bad)">Peor</b>' : ""}</div>`).join("");
+}
+
+/* ---------- Test de diagnóstico: 3 preguntas por capítulo, sin pistas hasta el final ---------- */
+let D = null;
+function diagStart() {
+  M = null; SM = null;
+  const l = [];
+  for (let c = 1; c <= CH.length; c++) l.push(...shuffle(QUESTIONS.filter(q => q.ch === c)).slice(0, 3));
+  D = { on: true, l: shuffle(l), i: 0, r: {} };
+  diagQ();
+}
+function diagQ() {
+  setNav("quiz"); cur = D.l[D.i]; locked = false;
+  opts = shuffle(cur.o.map((t, i) => ({ t, ok: i === 0 })));
+  app.innerHTML = `<div class="meta"><span class="tag">Test de diagnóstico</span><span>${D.i + 1}/${D.l.length}</span></div>
+    <div class="q">${esc(cur.q)}</div>` +
+    opts.map((o, i) => `<button class="opt" data-i="${i}"><b>${i + 1}.</b> ${esc(o.t)}</button>`).join("") +
+    `<p class="note">Sin pistas: verás el resultado por capítulo al final.</p>`;
+  document.querySelectorAll(".opt").forEach(b => b.onclick = () => diagAns(+b.dataset.i));
+}
+function diagAns(i) {
+  if (locked) return; locked = true;
+  const ok = opts[i].ok, c = card(cur.id), r = D.r[cur.ch] || (D.r[cur.ch] = { ok: 0, n: 0 });
+  r.n++; c.seen++; S.tick++;
+  if (ok) { r.ok++; c.ok++; c.box = Math.max(c.box, 1); } else { c.fail++; c.box = 0; }
+  c.due = S.tick + GAPS[c.box]; save();
+  if (++D.i < D.l.length) diagQ(); else diagEnd();
+}
+function diagEnd() {
+  const arr = Object.keys(D.r).map(k => ({ k: +k, ok: D.r[k].ok, n: D.r[k].n, p: Math.round(D.r[k].ok / D.r[k].n * 100) })).sort((a, b) => b.p - a.p);
+  const best = arr[0], worst = arr[arr.length - 1];
+  S.f = worst.k; S.dg = { d: Date.now(), r: D.r }; save(); D = null; setNav("home");
+  app.innerHTML = `<h2>Tu diagnóstico</h2>
+    <p>Lo que mejor sabes: <b>${esc(CH[best.k - 1])}</b> (${best.p}%).<br>Lo más débil: <b>${esc(CH[worst.k - 1])}</b> (${worst.p}%).</p>` +
+    arr.map(a => `<div class="row"><div class="g">${a.k}. ${esc(CH[a.k - 1])}<br><small>${a.ok} de ${a.n} correctas</small></div>
+      <div class="mini"><i style="width:${a.p}%"></i></div><b>${a.p}%</b></div>`).join("") +
+    `<button class="btn" id="sm2">Empezar aprendizaje inteligente</button><button class="btn alt" id="go">Estudiar el capítulo más débil</button><button class="btn alt" id="hm">Volver al inicio</button>`;
+  $("#sm2").onclick = smartStart; $("#go").onclick = quiz; $("#hm").onclick = home;
+}
+
+
+/* ---------- Otros métodos de estudio: tarjetas, casos y verdadero/falso ---------- */
+let M = null;
+function study(k) {
+  SM = null;
+  const src = k === "f" ? FLASH : k === "c" ? CASES : TF;
+  const a = src.filter(x => !S.f || x[0] === S.f);
+  M = { k, list: shuffle(a.length ? a : src), i: 0, ok: 0 };
+  setNav("quiz"); studyView();
+}
+function studyView() {
+  if (M.i >= M.list.length) {
+    if (SM) { smartNext(); return; }
+    app.innerHTML = `<div class="center"><div class="big">${M.k === "v" ? M.ok + "/" + M.list.length : "¡Listo!"}</div><p>Terminaste este mazo.</p></div>
+      <button class="btn" id="a">Otra vez</button><button class="btn alt" id="h">Inicio</button>`;
+    const k = M.k; $("#a").onclick = () => study(k); $("#h").onclick = home; return;
+  }
+  const x = M.list[M.i], next = () => { M.i++; studyView(); };
+  const head = `<div class="meta"><span class="tag">${esc(CH[x[0] - 1])}</span><span>${SM ? "Paso " + (SM.i + 1) + "/" + SM.steps.length + " · " : ""}${M.i + 1}/${M.list.length}</span></div>`;
+  if (M.k === "f") {
+    app.innerHTML = head + `<button class="q" id="fc" style="width:100%;min-height:160px;text-align:center;cursor:pointer;font:inherit;font-weight:700;font-size:1.25rem;color:var(--ink)">${esc(x[1])}<br><small style="font-weight:400;color:var(--mute)">Piensa tu respuesta y toca para verla</small></button><div id="nx"></div>`;
+    $("#fc").onclick = () => { $("#fc").innerHTML = esc(x[2]); $("#nx").innerHTML = `<button class="btn" id="n">Siguiente</button>`; $("#n").onclick = next; };
+  } else if (M.k === "c") {
+    app.innerHTML = head + `<div class="q">${esc(x[1])}</div><div id="fb"></div><button class="btn" id="sh">Ver la acción correcta</button>`;
+    $("#sh").onclick = () => { $("#fb").innerHTML = `<div class="fb"><strong>Acción correcta</strong>${esc(x[2])}</div>`; $("#sh").textContent = "Siguiente caso"; $("#sh").onclick = next; };
+  } else {
+    app.innerHTML = head + `<div class="q">${esc(x[1])}</div><button class="opt" data-v="1">Verdadero</button><button class="opt" data-v="0">Falso</button><div id="fb"></div>`;
+    document.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+      const ok = (b.dataset.v === "1") === x[2]; if (ok) M.ok++;
+      document.querySelectorAll(".opt").forEach(o => { o.disabled = true; if ((o.dataset.v === "1") === x[2]) o.classList.add("good"); else if (o === b) o.classList.add("bad"); });
+      $("#fb").innerHTML = `<div class="fb ${ok ? "" : "bad"}"><strong>${ok ? "¡Correcto!" : "Incorrecto"}</strong>${x[2] ? "Es verdadero. " : "Es falso. "}${esc(x[3])}</div><button class="btn" id="n">Siguiente</button>`;
+      $("#n").onclick = next;
+    });
+  }
+}
+
+
+/* ---------- Aprendizaje inteligente: sesión armada según tu diagnóstico y tus fallos ---------- */
+let SM = null;
+const pri = q => { const c = S.cards[q.id]; if (!c || !c.seen) return 2; return (c.due <= S.tick ? 3 : 0) + (4 - c.box) * 0.5 + c.fail * 0.3; };
+const pickN = (arr, n) => shuffle(arr).sort((a, b) => pri(b) - pri(a)).slice(0, n);
+function weakness() {
+  return CH.map((n, i) => {
+    const qs = QUESTIONS.filter(q => q.ch === i + 1); let s = 0, f = 0, m = 0;
+    qs.forEach(q => { const c = S.cards[q.id]; if (c) { s += c.seen; f += c.fail; if (c.box >= MASTERED) m++; } });
+    return { ch: i + 1, s, f, m, t: qs.length, score: (f + 1) / (s + 2) * 0.6 + (1 - m / qs.length) * 0.4 };
+  }).sort((a, b) => b.score - a.score);
+}
+function smartPlan() {
+  const steps = [];
+  weakness().slice(0, 2).forEach(x => {
+    const of = a => shuffle(a.filter(y => y[0] === x.ch)), nm = CH[x.ch - 1];
+    steps.push({ k: "f", title: nm, list: of(FLASH).slice(0, 3) });
+    steps.push({ k: "v", title: nm, list: of(TF).slice(0, 2) });
+    steps.push({ k: "c", title: nm, list: of(CASES).slice(0, 1) });
+    steps.push({ k: "q", title: nm, list: pickN(QUESTIONS.filter(q => q.ch === x.ch), 5) });
+  });
+  const fails = QUESTIONS.filter(q => S.cards[q.id] && S.cards[q.id].fail > 0);
+  steps.push({ k: "q", title: "Repaso de tus fallos", list: pickN(fails.length ? fails : QUESTIONS, 4) });
+  return steps;
+}
+function smartHome() {
+  setNav("home"); SM = null;
+  const top = weakness().slice(0, 2);
+  app.innerHTML = `<section class="plate"><h1>Aprendizaje inteligente</h1>
+    <p>${S.dg ? "Según tu test de diagnóstico y tus respuestas, hoy toca reforzar:" : "Conviene hacer primero el test de diagnóstico. Por ahora, esto parece lo más débil:"}</p>
+    ${top.map(x => `<div class="row" style="color:var(--ink)"><div class="g">${x.ch}. ${esc(CH[x.ch - 1])}<br><small>${x.s ? "Fallaste " + x.f + " de " + x.s : "Sin datos aún"} · ${x.m}/${x.t} dominadas</small></div></div>`).join("")}</section>
+    <p class="note">Sesión de unos 10 minutos: por cada capítulo débil, tarjetas, verdadero o falso, un caso práctico y preguntas; al final, un repaso de tus fallos.</p>
+    <button class="btn" id="sg">Empezar sesión</button>
+    <button class="btn alt" id="sd">${S.dg ? "Repetir test de diagnóstico" : "Hacer test de diagnóstico"}</button>`;
+  $("#sg").onclick = smartStart; $("#sd").onclick = diagStart;
+}
+function smartStart() { SM = { steps: smartPlan(), i: -1, q: 0, ok: 0 }; smartNext(); }
+function smartNext() {
+  SM.i++;
+  const s = SM.steps[SM.i];
+  if (!s) return smartEnd();
+  if (!s.list.length) return smartNext();
+  SM.cur = s;
+  if (s.k === "q") smartQ(s.list, 0);
+  else { M = { k: s.k, list: s.list, i: 0, ok: 0 }; setNav("quiz"); studyView(); }
+}
+function smartQ(list, i) {
+  if (i >= list.length) return smartNext();
+  cur = list[i]; locked = false; M = null; setNav("quiz");
+  opts = shuffle(cur.o.map((t, k) => ({ t, ok: k === 0 })));
+  app.innerHTML = `<div class="meta"><span class="tag">${esc(SM.cur.title)}</span><span>Paso ${SM.i + 1}/${SM.steps.length} · ${i + 1}/${list.length}</span></div>
+    <div class="q">${esc(cur.q)}</div>` +
+    opts.map((o, k) => `<button class="opt" data-i="${k}"><b>${k + 1}.</b> ${esc(o.t)}</button>`).join("") + `<div id="fb"></div>`;
+  document.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    if (locked) return; locked = true;
+    const k = +b.dataset.i, ok = opts[k].ok, c = card(cur.id);
+    S.tick++; c.seen++;
+    if (ok) { c.ok++; c.box = Math.min(c.box + 1, GAPS.length - 1); } else { c.fail++; c.box = 0; }
+    c.due = S.tick + GAPS[c.box]; S.last = cur.id; save();
+    SM.q++; if (ok) SM.ok++;
+    document.querySelectorAll(".opt").forEach((x, j) => { x.disabled = true; if (opts[j].ok) x.classList.add("good"); else if (j === k) x.classList.add("bad"); });
+    $("#fb").innerHTML = `<div class="fb ${ok ? "" : "bad"}"><strong>${ok ? "¡Correcto!" : "Incorrecto"}</strong>${ok ? "" : "La correcta es: <b>" + esc(cur.o[0]) + "</b>. "}${esc(cur.why)}</div><button class="btn" id="nx">Siguiente</button>`;
+    $("#nx").onclick = () => smartQ(list, i + 1); $("#nx").focus();
+  });
+}
+function smartEnd() {
+  setNav("home");
+  const w = weakness()[0], pc = SM.q ? Math.round(SM.ok / SM.q * 100) : 0;
+  app.innerHTML = `<div class="center"><p class="meta" style="justify-content:center">Sesión terminada</p><div class="big">${SM.ok}/${SM.q}</div>
+    <p>Preguntas correctas (${pc}%). Lo que más conviene reforzar ahora: <b>${esc(CH[w.ch - 1])}</b>.</p></div>
+    <button class="btn" id="a">Otra sesión</button><button class="btn alt" id="h">Inicio</button>`;
+  $("#a").onclick = smartStart; $("#h").onclick = home;
+}
+
+
+/* ---------- Cuentas con Supabase: registro, inicio de sesión y progreso en la nube ---------- */
+const HD = tok => ({ apikey: SUPA_KEY, "Content-Type": "application/json", Authorization: "Bearer " + (tok || SUPA_KEY) });
+const saveAC = () => { try { localStorage.setItem("ecb_sesion", JSON.stringify(AC)); } catch (e) {} };
+async function refreshTk() {
+  try {
+    const r = await fetch(SUPA_URL + "/auth/v1/token?grant_type=refresh_token", { method: "POST", headers: HD(), body: JSON.stringify({ refresh_token: AC.rt }) });
+    if (!r.ok) return false;
+    const j = await r.json(); AC.tk = j.access_token; AC.rt = j.refresh_token; saveAC(); return true;
+  } catch (e) { return false; }
+}
+async function db(path, opt) {
+  const go = () => fetch(SUPA_URL + "/rest/v1/" + path, { ...opt, headers: { ...HD(AC.tk), ...(opt.headers || {}) } });
+  let r = await go();
+  if (r.status === 401 && await refreshTk()) r = await go();
+  return r;
+}
+let pushT = null;
+function push() {
+  if (!SUPA_URL || !AC) return;
+  clearTimeout(pushT);
+  pushT = setTimeout(async () => {
+    try {
+      const t = totals();
+      await db("progreso?on_conflict=user_id", { method: "POST", headers: { Prefer: "resolution=merge-duplicates" },
+        body: JSON.stringify({ user_id: AC.uid, nombre: AC.nombre, email: AC.email, avance: progress(), respondidas: t.seen, aciertos: t.acc, datos: S, actualizado: new Date().toISOString() }) });
+    } catch (e) {}
+  }, 1500);
+}
+async function pull() {
+  try {
+    const r = await db("progreso?user_id=eq." + AC.uid + "&select=datos", { method: "GET" });
+    const j = r.ok ? await r.json() : [];
+    if (j[0] && j[0].datos && (j[0].datos.tick || 0) > S.tick) { S = j[0].datos; try { localStorage.setItem(LS_KEY + suf(), JSON.stringify(S)); } catch (e) {} }
+    else push();
+  } catch (e) {}
+}
+async function auth(mode, nombre, email, pass) {
+  const r = await fetch(SUPA_URL + "/auth/v1/" + (mode === "up" ? "signup" : "token?grant_type=password"), { method: "POST", headers: HD(),
+    body: JSON.stringify(mode === "up" ? { email, password: pass, data: { nombre } } : { email, password: pass }) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.msg || j.error_description || j.message || "No se pudo completar la acción");
+  if (!j.access_token) return "confirmar";
+  AC = { tk: j.access_token, rt: j.refresh_token, uid: j.user.id, email: j.user.email, nombre: (j.user.user_metadata && j.user.user_metadata.nombre) || nombre || email.split("@")[0] };
+  saveAC(); S = load(); await pull(); return "ok";
+}
+function authView(mode) {
+  setNav("home");
+  const up = mode === "up";
+  app.innerHTML = `<section class="hero"><div class="sign">B</div><div><h1>${up ? "Crear cuenta" : "Iniciar sesión"}</h1><p>Guarda tu avance y úsalo en cualquier dispositivo</p></div></section>
+    <div class="card">
+      ${up ? '<input id="an" placeholder="Nombre" autocomplete="name" aria-label="Nombre">' : ""}
+      <input id="ae" type="email" placeholder="Correo" autocomplete="email" aria-label="Correo">
+      <input id="ap" type="password" placeholder="Contraseña (mínimo 6 caracteres)" autocomplete="${up ? "new-password" : "current-password"}" aria-label="Contraseña">
+      <p id="am" class="note" style="min-height:1.4em"></p>
+      <button class="btn" id="ab">${up ? "Crear cuenta" : "Entrar"}</button>
+      <button class="btn alt" id="at">${up ? "Ya tengo cuenta" : "Crear una cuenta nueva"}</button>
+    </div>
+    <button class="btn alt" id="ag">Continuar sin cuenta</button>`;
+  const msg = t => { $("#am").textContent = t; };
+  const go = async () => {
+    const n = up ? $("#an").value.trim() : "", e = $("#ae").value.trim(), p = $("#ap").value;
+    if ((up && !n) || !e || p.length < 6) return msg("Completa todos los campos (contraseña de 6 o más caracteres).");
+    $("#ab").disabled = true; msg("Un momento...");
+    try {
+      const r = await auth(mode, n, e, p);
+      if (r === "confirmar") { $("#ab").disabled = false; msg("Cuenta creada. Revisa tu correo para confirmarla y luego inicia sesión."); } else home();
+    } catch (x) { $("#ab").disabled = false; msg(/invalid login/i.test(x.message) ? "Correo o contraseña incorrectos." : x.message); }
+  };
+  $("#ab").onclick = go; $("#ap").onkeydown = ev => { if (ev.key === "Enter") go(); };
+  $("#at").onclick = () => authView(up ? "in" : "up"); $("#ag").onclick = home;
+}
+function acctBox() {
+  if (!SUPA_URL) return "";
+  return AC ? `<div class="card"><b>${esc(AC.nombre)}</b><br><small class="note">${esc(AC.email)} · avance sincronizado</small><button class="btn alt" id="lo">Cerrar sesión</button></div>`
+    : `<div class="card"><b>Sin cuenta</b><br><small class="note">Tu avance solo está en este dispositivo.</small><button class="btn alt" id="li">Iniciar sesión o registrarme</button></div>`;
+}
+function acctBind() {
+  if ($("#lo")) $("#lo").onclick = () => { AC = null; try { localStorage.removeItem("ecb_sesion"); } catch (e) {} S = load(); authView("in"); };
+  if ($("#li")) $("#li").onclick = () => authView("in");
+}
+
+$("#nHome").onclick = home; $("#nStats").onclick = stats;
+document.addEventListener("keydown", e => {
+  if (view !== "quiz" || M || SM) return;
+  if (e.key >= "1" && e.key <= "9" && !locked && opts[+e.key - 1]) (D && D.on ? diagAns : answer)(+e.key - 1);
+});
+if (!AC && SUPA_URL) authView("in"); else { home(); if (AC) pull().then(() => { if (view === "home") home(); }); }
+</script>
+</body>
+</html>
